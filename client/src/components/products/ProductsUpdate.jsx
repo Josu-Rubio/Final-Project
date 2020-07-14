@@ -1,6 +1,6 @@
-import React, { Component, Suspense } from 'react';
-import api from '../api';
-import { withTranslation } from 'react-i18next';
+import React, { Component } from 'react';
+import api from '../../api';
+import Translate from 'react-translate-component';
 
 import styled from 'styled-components';
 
@@ -36,11 +36,12 @@ const CancelButton = styled.a.attrs({
   margin: 15px 15px 15px 5px;
 `;
 
-class ProductsInsert extends Component {
+class ProductsUpdate extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: this.props.match.params.id,
       name: '',
       price: '',
       sale: true,
@@ -80,13 +81,13 @@ class ProductsInsert extends Component {
     this.setState({ desc });
   };
 
-  handleIncludeProduct = async () => {
-    const { name, price, sale, tag, img, desc } = this.state;
+  handleUpdateProduct = async () => {
+    const { id, name, price, sale, tag, img, desc } = this.state;
 
-    const payload = { name, price, sale, tag, img, desc };
+    const payload = { id, name, price, sale, tag, img, desc };
 
-    await api.insertProduct(payload).then((res) => {
-      window.alert(`Ad created withsuccessfully`);
+    await api.updateProductById(id, payload).then((res) => {
+      window.alert(`Ad updated successfully`);
       this.setState({
         name: '',
         price: '',
@@ -95,71 +96,100 @@ class ProductsInsert extends Component {
         img: '',
         desc: '',
       });
+
+      window.location.href = `/products/list`;
     });
   };
+
+  componentDidMount = async () => {
+    const { id } = this.state;
+    const product = await api.getProductById(id);
+
+    this.setState({
+      name: product.data.data.name,
+      price: product.data.data.price,
+      sale: product.data.data.sale,
+      tag: product.data.data.tag,
+      img: product.data.data.img,
+      desc: product.data.data.desc,
+    });
+  };
+
   render() {
     const { name, price, sale, tag, img, desc } = this.state;
-    const { t } = this.props;
-
     return (
       <Wrapper>
-        <Title>{t('Create Ad')}</Title>
+        <Title>
+          <Translate content='title.update' component='h1' />
+        </Title>
 
-        <Label>{t('Name')}: </Label>
+        <Label>
+          <Translate content='label.name' component='h5' />
+        </Label>
         <InputText
           type='text'
           value={name}
           onChange={this.handleChangeInputName}
         />
 
-        <Label>{t('Price')}: </Label>
+        <Label>
+          <Translate content='label.price' component='h5' />
+        </Label>
         <InputText
           type='number'
           value={price}
           onChange={this.handleChangeInputPrice}
         />
 
-        <Label>{t('Sell or Buy')}: </Label>
+        <Label>
+          <Translate content='label.sale' component='h5' />
+        </Label>
         <select value={sale} onChange={this.handleChangeInputSale}>
-          <option value='true'>{t('Sell')}</option>
-          <option value='false'>{t('Buy')}</option>
+          <Translate content='sale.sell' component='option' value='true' />
+          <Translate content='sale.buy' component='option' value='false' />
         </select>
 
-        <Label>{t('Select a tag')}: </Label>
+        <Label>
+          <Translate content='label.tag' component='h5' />
+        </Label>
         <select value={tag} onChange={this.handleChangeInputTag}>
-          <option value='Lifestyle'>{t('Lifestyle')}</option>
-          <option value='Motor'>{t('Motor')}</option>
-          <option value='Phone'>{t('Electronics')}</option>
-          <option value='Phone'>{t('Work')}</option>
+          <Translate content='tag.life' component='option' value='lifestyle' />
+          <Translate content='tag.motor' component='option' value='motor' />
+          <Translate
+            content='tag.elec'
+            component='option'
+            value='electronics'
+          />
+          <Translate content='tag.work' component='option' value='work' />
         </select>
 
-        <Label>{t('Photo')}: </Label>
+        <Label>
+          <Translate content='label.photo' component='h5' />
+        </Label>
         <InputText
           type='text'
           value={img}
           onChange={this.handleChangeInputImg}
         />
 
-        <Label>{t('Description')}: </Label>
+        <Label>
+          <Translate content='label.desc' component='h5' />
+        </Label>
         <InputText
           type='text'
           value={desc}
           onChange={this.handleChangeInputDesc}
         />
 
-        <Button onClick={this.handleIncludeProduct}>{t('Create Ad')}</Button>
-        <CancelButton href={'/products/list'}>{t('Cancel')}</CancelButton>
+        <Button onClick={this.handleUpdateProduct}>
+          <Translate content='title.update' />
+        </Button>
+        <CancelButton href={'/products/list'}>
+          <Translate content='button.cancel' />
+        </CancelButton>
       </Wrapper>
     );
   }
 }
 
-const AdCreate = withTranslation()(ProductsInsert);
-
-export default function CreateAd() {
-  return (
-    <Suspense fallback='Loading...'>
-      <AdCreate />
-    </Suspense>
-  );
-}
+export default ProductsUpdate;

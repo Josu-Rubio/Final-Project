@@ -9,7 +9,7 @@ import store from '../store';
 
 import { NavBar, Landing } from '../components/layout';
 import { Register, Login } from '../components/auth';
-import { ProductsList, CreateAd, UpdateAd } from '../pages';
+import { ProductsList, CreateAd, UpdateAd } from '../components/products';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
 

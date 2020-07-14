@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import counterpart from 'counterpart';
+import Translate from 'react-translate-component';
+import en from '../../lang/en';
+import es from '../../lang/es';
 
 import Logo from './Logo';
 import Links from './Links';
@@ -17,24 +20,34 @@ const Nav = styled.nav.attrs({
   margin-bottom: 20 px;
 `;
 
-function NavBar() {
-  const { t, i18n } = useTranslation();
+counterpart.registerTranslations('en', en);
+counterpart.registerTranslations('es', es);
+counterpart.setLocale('en');
 
-  function changeLanguage(lang) {
-    i18n.changeLanguage(lang);
+class NavBar extends Component {
+  state = {
+    lang: 'en',
+  };
+
+  onLangChange = (e) => {
+    this.setState({ lang: e.target.value });
+    counterpart.setLocale(e.target.value);
+  };
+
+  render() {
+    return (
+      <Container>
+        <Nav>
+          <Logo />
+          <Links />
+          <select value={this.state.lang} onChange={this.onLangChange}>
+            <Translate content='Language.en' component='option' value='en' />
+            <Translate content='Language.es' component='option' value='es' />
+          </select>
+        </Nav>
+      </Container>
+    );
   }
-  return (
-    <Container>
-      <Nav>
-        <Logo />
-        <Links />
-        <div>
-          <button onClick={() => changeLanguage('en')}>{t('English')}</button>
-          <button onClick={() => changeLanguage('es')}>{t('Spanish')}</button>
-        </div>
-      </Nav>
-    </Container>
-  );
 }
 
 export default NavBar;

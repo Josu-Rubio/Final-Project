@@ -56,6 +56,7 @@ updateProduct = async (req, res) => {
     product.tag = body.tag;
     product.img = body.img;
     product.desc = body.desc;
+    product.stat = body.stat;
 
     product
       .save()
