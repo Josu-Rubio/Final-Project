@@ -44,10 +44,11 @@ class ProductsUpdate extends Component {
       id: this.props.match.params.id,
       name: '',
       price: '',
-      sale: true,
+      sale: '',
       tag: '',
       img: '',
       desc: '',
+      stat: '',
     };
   }
 
@@ -71,6 +72,11 @@ class ProductsUpdate extends Component {
     this.setState({ tag });
   };
 
+  handleChangeInputStat = async (event) => {
+    const stat = event.target.value;
+    this.setState({ stat });
+  };
+
   handleChangeInputImg = async (event) => {
     const img = event.target.value;
     this.setState({ img });
@@ -82,9 +88,9 @@ class ProductsUpdate extends Component {
   };
 
   handleUpdateProduct = async () => {
-    const { id, name, price, sale, tag, img, desc } = this.state;
+    const { id, name, price, sale, tag, img, desc, stat } = this.state;
 
-    const payload = { id, name, price, sale, tag, img, desc };
+    const payload = { id, name, price, sale, tag, img, desc, stat };
 
     await api.updateProductById(id, payload).then((res) => {
       window.alert(`Ad updated successfully`);
@@ -95,6 +101,7 @@ class ProductsUpdate extends Component {
         tag: '',
         img: '',
         desc: '',
+        stat: '',
       });
 
       window.location.href = `/products/list`;
@@ -112,17 +119,17 @@ class ProductsUpdate extends Component {
       tag: product.data.data.tag,
       img: product.data.data.img,
       desc: product.data.data.desc,
+      stat: product.data.data.stat,
     });
   };
 
   render() {
-    const { name, price, sale, tag, img, desc } = this.state;
+    const { name, price, sale, tag, img, desc, stat } = this.state;
     return (
       <Wrapper>
         <Title>
-          <Translate content='title.update' component='h1' />
+          <Translate content='title.create' component='h1' />
         </Title>
-
         <Label>
           <Translate content='label.name' component='h5' />
         </Label>
@@ -131,7 +138,6 @@ class ProductsUpdate extends Component {
           value={name}
           onChange={this.handleChangeInputName}
         />
-
         <Label>
           <Translate content='label.price' component='h5' />
         </Label>
@@ -140,15 +146,13 @@ class ProductsUpdate extends Component {
           value={price}
           onChange={this.handleChangeInputPrice}
         />
-
         <Label>
           <Translate content='label.sale' component='h5' />
         </Label>
         <select value={sale} onChange={this.handleChangeInputSale}>
-          <Translate content='sale.sell' component='option' value='true' />
-          <Translate content='sale.buy' component='option' value='false' />
+          <Translate content='sale.sell' component='option' value='sell' />
+          <Translate content='sale.buy' component='option' value='buy' />
         </select>
-
         <Label>
           <Translate content='label.tag' component='h5' />
         </Label>
@@ -162,7 +166,23 @@ class ProductsUpdate extends Component {
           />
           <Translate content='tag.work' component='option' value='work' />
         </select>
-
+        <Label>
+          <Translate content='label.stat' component='h5' />
+        </Label>
+        <select value={stat} onChange={this.handleChangeInputStat}>
+          <Translate
+            content='stat.available'
+            component='option'
+            value='available'
+          />
+          <Translate
+            content='stat.reserved'
+            component='option'
+            value='reserved'
+          />
+          <Translate content='stat.sold' component='option' value='sold' />
+        </select>
+        <br />
         <Label>
           <Translate content='label.photo' component='h5' />
         </Label>
@@ -171,7 +191,6 @@ class ProductsUpdate extends Component {
           value={img}
           onChange={this.handleChangeInputImg}
         />
-
         <Label>
           <Translate content='label.desc' component='h5' />
         </Label>

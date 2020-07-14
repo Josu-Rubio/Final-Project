@@ -43,7 +43,7 @@ class ProductsInsert extends Component {
     this.state = {
       name: '',
       price: '',
-      sale: true,
+      sale: 'sell',
       tag: 'lifestyle',
       img: '',
       desc: '',
@@ -70,6 +70,7 @@ class ProductsInsert extends Component {
     const tag = event.target.value;
     this.setState({ tag });
   };
+
   handleChangeInputStat = async (event) => {
     const stat = event.target.value;
     this.setState({ stat });
@@ -134,8 +135,8 @@ class ProductsInsert extends Component {
           <Translate content='label.sale' component='h5' />
         </Label>
         <select value={sale} onChange={this.handleChangeInputSale}>
-          <Translate content='sale.sell' component='option' value='true' />
-          <Translate content='sale.buy' component='option' value='false' />
+          <Translate content='sale.sell' component='option' value='sell' />
+          <Translate content='sale.buy' component='option' value='buy' />
         </select>
 
         <Label>

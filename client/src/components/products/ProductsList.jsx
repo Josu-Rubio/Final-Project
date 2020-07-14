@@ -21,21 +21,22 @@ const Delete = styled.div`
 `;
 
 class UpdateProduct extends Component {
-  updateUser = (event) => {
+  updateProduct = (event) => {
     event.preventDefault();
-
+    console.log(this.props);
     window.location.href = `/products/update/${this.props.id}`;
+    console.log(this.props);
   };
 
   render() {
-    return <Update onClick={this.updateUser}>Update</Update>;
+    return <Update onClick={this.updateProduct}>Update</Update>;
   }
 }
 
 class DeleteProduct extends Component {
-  deleteUser = (event) => {
+  deleteProduct = (event) => {
     event.preventDefault();
-
+    console.log(this.props);
     if (
       window.confirm(
         `Do tou want to delete the product ${this.props.id} permanently?`
@@ -47,7 +48,7 @@ class DeleteProduct extends Component {
   };
 
   render() {
-    return <Delete onClick={this.deleteUser}>Delete</Delete>;
+    return <Delete onClick={this.deleteProduct}>Delete</Delete>;
   }
 }
 
@@ -94,6 +95,11 @@ class ProductsList extends Component {
       {
         Header: 'Tag',
         accessor: 'tag',
+        filterable: true,
+      },
+      {
+        Header: 'Status',
+        accessor: 'stat',
         filterable: true,
       },
       {
