@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import api from '../api';
+import { withTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 
@@ -85,7 +86,7 @@ class ProductsInsert extends Component {
     const payload = { name, price, sale, tag, img, desc };
 
     await api.insertProduct(payload).then((res) => {
-      window.alert(`Product inserted successfully`);
+      window.alert(`Ad created withsuccessfully`);
       this.setState({
         name: '',
         price: '',
@@ -96,59 +97,69 @@ class ProductsInsert extends Component {
       });
     });
   };
-
   render() {
     const { name, price, sale, tag, img, desc } = this.state;
+    const { t } = this.props;
+
     return (
       <Wrapper>
-        <Title>Create Product</Title>
+        <Title>{t('Create Ad')}</Title>
 
-        <Label>Name: </Label>
+        <Label>{t('Name')}: </Label>
         <InputText
           type='text'
           value={name}
           onChange={this.handleChangeInputName}
         />
 
-        <Label>Price: </Label>
+        <Label>{t('Price')}: </Label>
         <InputText
           type='number'
           value={price}
           onChange={this.handleChangeInputPrice}
         />
 
-        <Label>Sell or Buy: </Label>
+        <Label>{t('Sell or Buy')}: </Label>
         <select value={sale} onChange={this.handleChangeInputSale}>
-          <option value='true'>Sell</option>
-          <option value='false'>Buy</option>
+          <option value='true'>{t('Sell')}</option>
+          <option value='false'>{t('Buy')}</option>
         </select>
 
-        <Label>Select a tag: </Label>
+        <Label>{t('Select a tag')}: </Label>
         <select value={tag} onChange={this.handleChangeInputTag}>
-          <option value='Lifestyle'>Lifestyle</option>
-          <option value='Motor'>Motor</option>
-          <option value='Phone'>Phone</option>
+          <option value='Lifestyle'>{t('Lifestyle')}</option>
+          <option value='Motor'>{t('Motor')}</option>
+          <option value='Phone'>{t('Electronics')}</option>
+          <option value='Phone'>{t('Work')}</option>
         </select>
 
-        <Label>Photo: </Label>
+        <Label>{t('Photo')}: </Label>
         <InputText
           type='text'
           value={img}
           onChange={this.handleChangeInputImg}
         />
 
-        <Label>Description: </Label>
+        <Label>{t('Description')}: </Label>
         <InputText
           type='text'
           value={desc}
           onChange={this.handleChangeInputDesc}
         />
 
-        <Button onClick={this.handleIncludeProduct}>Add Product</Button>
-        <CancelButton href={'/products/list'}>Cancel</CancelButton>
+        <Button onClick={this.handleIncludeProduct}>{t('Create Ad')}</Button>
+        <CancelButton href={'/products/list'}>{t('Cancel')}</CancelButton>
       </Wrapper>
     );
   }
 }
 
-export default ProductsInsert;
+const AdCreate = withTranslation()(ProductsInsert);
+
+export default function CreateAd() {
+  return (
+    <Suspense fallback='Loading...'>
+      <AdCreate />
+    </Suspense>
+  );
+}

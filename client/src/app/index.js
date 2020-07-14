@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { NavBar } from '../components';
-import { ProductsList, ProductsInsert, ProductsUpdate } from '../pages';
+import { ProductsList, CreateAd, UpdateAd } from '../pages';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,8 +12,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/products/list' exact component={ProductsList} />
-        <Route path='/products/create' exact component={ProductsInsert} />
-        <Route path='/products/update/:id' exact component={ProductsUpdate} />
+        <Route path='/products/create' exact component={CreateAd} />
+        <Route path='/products/update/:id' exact component={UpdateAd} />
       </Switch>
     </Router>
   );

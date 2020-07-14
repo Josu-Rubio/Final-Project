@@ -1,5 +1,5 @@
 import ProductsList from './ProductsList';
-import ProductsInsert from './ProductsInsert';
-import ProductsUpdate from './ProductsUpdate';
+import CreateAd from './ProductsInsert';
+import UpdateAd from './ProductsUpdate';
 
-export { ProductsList, ProductsInsert, ProductsUpdate };
+export { ProductsList, CreateAd, UpdateAd };
