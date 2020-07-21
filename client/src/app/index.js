@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from '../store';
 
 import { NavBar, Landing } from '../components/layout';
-import { Register, Login } from '../components/auth';
+import { Register, Login, ForgotPassword } from '../components/auth';
 import { ProductsList, CreateAd, UpdateAd } from '../components/products';
 import PrivateRoute from '../components/private-route/PrivateRoute';
 import Dashboard from '../components/dashboard/Dashboard';
@@ -47,6 +47,7 @@ function App() {
           <PrivateRoute exact path='/products/create' component={CreateAd} />
           <Route exact path='/products/update/:id' component={UpdateAd} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/forgotpassword' component={ForgotPassword} />
         </Switch>
       </Router>
     </Provider>

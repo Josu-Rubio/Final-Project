@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import classnames from 'classnames';
+
 class Login extends Component {
   constructor() {
     super();
@@ -51,10 +52,6 @@ class Login extends Component {
       <div className='container'>
         <div style={{ marginTop: '4rem' }} className='row'>
           <div className='col s8 offset-s2'>
-            <Link to='/' className='btn-flat waves-effect'>
-              <i className='material-icons left'>keyboard_backspace</i> Back to
-              home
-            </Link>
             <div className='col s12' style={{ paddingLeft: '11.250px' }}>
               <h4>
                 <b>Login</b> below
@@ -97,6 +94,11 @@ class Login extends Component {
                   {errors.password}
                   {errors.passwordincorrect}
                 </span>
+              </div>
+              <div>
+                <Link to='/forgotpassword' className='btn-flat waves-effect'>
+                  Forgot your password?
+                </Link>
               </div>
               <div className='col s12' style={{ paddingLeft: '11.250px' }}>
                 <button

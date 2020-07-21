@@ -170,7 +170,7 @@ class ProductsInsert extends Component {
         </select>
         <br />
         <Label>
-          <Translate content='label.photo' component='h5' />
+          <Translate content='label.img' component='h5' />
         </Label>
         <InputText
           type='text'
