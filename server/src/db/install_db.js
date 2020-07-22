@@ -2,8 +2,8 @@
 
 const fs = require('fs');
 
-const db = require('./src/db/index');
-const { Product, User } = require('./src/models');
+const db = require('./index');
+const { Product, User } = require('../models');
 
 require('dotenv').config();
 

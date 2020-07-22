@@ -14,13 +14,13 @@ const {
   ProductRoutes,
   WebUserRoutes,
   WebProductRoutes,
-} = require('./src/routes');
-const { ErrorMiddleware, AuthMiddleware } = require('./src/middlewares');
-const { i18nConfig } = require('./src/utils');
+} = require('./routes');
+const { ErrorMiddleware, AuthMiddleware } = require('./middlewares');
+const { i18nConfig } = require('./utils');
 
 var app = express();
 
-const db = require('./src/db');
+const db = require('./db');
 
 // View Engine Setup
 app.set('views', path.join(__dirname, './views'));
