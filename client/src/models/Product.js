@@ -63,6 +63,6 @@ export const PRODUCT_CONSTANTS = {
     WORK: 'work',
     LIFESTYLE: 'lifestyle',
     MOTOR: 'motor',
-    ELECTRONICS: 'electronics',
+    MOBILE: 'mobile',
   },
 };

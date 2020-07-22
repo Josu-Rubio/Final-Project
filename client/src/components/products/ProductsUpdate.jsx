@@ -159,11 +159,7 @@ class ProductsUpdate extends Component {
         <select value={tag} onChange={this.handleChangeInputTag}>
           <Translate content='tag.life' component='option' value='lifestyle' />
           <Translate content='tag.motor' component='option' value='motor' />
-          <Translate
-            content='tag.elec'
-            component='option'
-            value='electronics'
-          />
+          <Translate content='tag.elec' component='option' value='mobile' />
           <Translate content='tag.work' component='option' value='work' />
         </select>
         <Label>

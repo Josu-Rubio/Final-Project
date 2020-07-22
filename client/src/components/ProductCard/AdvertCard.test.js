@@ -1,15 +1,12 @@
-// Node modules
 import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
-// Own modules
 import ProductCard from './ProductCard';
 import { PRODUCT_CONSTANTS } from '../../models/Product';
 
 configure({ adapter: new Adapter() });
 
-// Anuncio por defecto para las pruebas
 const defaultProps = {
   id: '1',
   name: 'PS4Pro',

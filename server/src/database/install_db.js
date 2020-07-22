@@ -46,7 +46,7 @@ async function initProduct() {
       desc: 'New gaming mouse on sale',
       type: 'sell',
       img: '/images/products/original/ratonmamba.jpg',
-      tags: ['lifestyle', 'work', 'electronics'],
+      tags: ['lifestyle', 'work', 'mobile'],
     },
   ]);
 }

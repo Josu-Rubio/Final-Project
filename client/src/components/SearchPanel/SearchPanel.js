@@ -1,6 +1,4 @@
-// NPM Modules
 import React, { useState } from 'react';
-// Material UI
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,18 +9,10 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
 import Chip from '@material-ui/core/Chip';
-// Own modules
-// Models
 import { PRODUCT_CONSTANTS } from '../../models/Product';
-// Assets
-// CSS
 import './styles.css';
 
-/**
- * Main App
- */
 export default function SearchPanel(props) {
-  // Initial state del componente
   const initialState = {
     name: '',
     type: PRODUCT_CONSTANTS.TYPE.ALL,
@@ -31,16 +21,13 @@ export default function SearchPanel(props) {
     priceTo: 0,
   };
 
-  // Uso del hook useState
   const [inputs, setInputs] = useState(initialState);
 
-  // Cambio en alguno de los campo del formulario
   const handleInputChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     const formInputs = { ...inputs, [name]: value };
     setInputs(formInputs);
-    // Los campos numérico NO lanzan busqueda automática (salvo que estén en blanco). El resto de campos lanzan búsqueda en tiempo real
     if (
       !name.startsWith('price') ||
       (name.startsWith('price') && inputs[name] === '')
@@ -49,7 +36,6 @@ export default function SearchPanel(props) {
     }
   };
 
-  // Reseteo el estado a los valores originales de búsqueda
   const handleInputReset = () => {
     const formInputs = initialState;
     formInputs.tag = PRODUCT_CONSTANTS.TAG.ALL;
@@ -58,18 +44,14 @@ export default function SearchPanel(props) {
     props.handleAPISearch();
   };
 
-  /**
-   * Reseteo el estado a los valores originales de búsqueda
-   */
   const handleSubmit = (ev) => {
     ev.preventDefault();
     props.handleAPISearch(inputs);
   };
 
-  // Render del componente
   return (
     <form className='SearchPanel' onSubmit={handleSubmit}>
-      <h2>Criterios de búsqueda</h2>
+      <h2>Searching filters</h2>
       <div className='InputSearch'>
         <SearchIcon className='InputSearch__Icon InputSearch__Icon--start' />
         <input
@@ -86,7 +68,7 @@ export default function SearchPanel(props) {
       <div className='SearchPanel__Filters'>
         <FormControl>
           <InputLabel shrink htmlFor='type'>
-            Tipo
+            Type
           </InputLabel>
           <Select
             id='filter_type'
@@ -166,7 +148,7 @@ export default function SearchPanel(props) {
           </Select>
         </FormControl>
         <FormControl>
-          <InputLabel htmlFor='minPrice'>Precio desde</InputLabel>
+          <InputLabel htmlFor='minPrice'>Minimum price</InputLabel>
           <Input
             id='filter_minPrice'
             name='minPrice'
@@ -177,7 +159,7 @@ export default function SearchPanel(props) {
           />
         </FormControl>
         <FormControl>
-          <InputLabel htmlFor='maxPrice'>Precio hasta</InputLabel>
+          <InputLabel htmlFor='maxPrice'>Maximum price</InputLabel>
           <Input
             id='filter_maxPrice'
             name='maxPrice'
@@ -189,15 +171,6 @@ export default function SearchPanel(props) {
         </FormControl>
       </div>
       <div className='SearchPanel__Footer'>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          startIcon={<SearchIcon />}
-        >
-          {' '}
-          Search API{' '}
-        </Button>
         <Button
           variant='contained'
           color='secondary'

@@ -1,18 +1,8 @@
-// NPM Modules
 import React from 'react';
 import PropTypes from 'prop-types';
-// Material UI
-// Components
 import ProductCardSmall from '../ProductCardSmall';
-// Own modules
-// Models
-// Assets
-// CSS
 import './styles.css';
 
-/**
- * Functional component to render an product card
- */
 export default function ProductListSmall(props) {
   return (
     <section className='ProductListSmall'>

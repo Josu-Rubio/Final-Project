@@ -339,7 +339,7 @@ Los parámetros disponibles para filtrado son:
 
 - `name`: filtrado por los que empiecen con el string indicado (la API NO es case sensitive).
 - `price`: filtrar por precio. Entre un rango x-y, menores a un precio x-, o mayores a un precio -y.
-- `tag`: permite filtrar los anuncios que tengan el tag indicado. Dentro de los posibles (`work`, `lifestyle`, `motor`, `electronics`).
+- `tag`: permite filtrar los anuncios que tengan el tag indicado. Dentro de los posibles (`work`, `lifestyle`, `motor`, `mobile`).
 - `venta`: permite filtrar por anuncios de venta (=true), o anuncios de compra (=false)
 - `skip`: permite saltar resultados (utilizado para paginar junto con limit)
 - `limit`: permite limitar el número de resultados devueltos
@@ -373,7 +373,7 @@ https://localhost:8443/apiv1/products?price=1-100&venta=false
       "tags": [
         "lifestyle",
         "work",
-        "electronics"
+        "mobile"
       ],
       "_id": "5d3a0a5f9bd7ed2ece463ab7",
       "name": "Teclado Gaming Razer Chroma",
@@ -419,7 +419,7 @@ http://127.0.0.1:3001/apiv1/tags
   "count": 4,
   "results": [
     "lifestyle",
-    "electronics",
+    "mobile",
     "motor",
     "work"
   ]

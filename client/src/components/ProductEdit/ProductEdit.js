@@ -1,8 +1,6 @@
-// NPM Modules
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// Material UI
 import Container from '@material-ui/core/Container';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
@@ -17,25 +15,15 @@ import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-// Components
 import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Loading from '../Loading';
 import Error from '../Error';
-// Models
 import Product from '../../models/Product';
-// Assets
 import imageImg from '../../assets/images/photo.png';
-// CSS
 import './styles.css';
 
-/**
- * Main App
- */
 export default class ProductEdit extends Component {
-  /**
-   * Constructor
-   */
   constructor(props) {
     super(props);
     this.inputFile = React.createRef();
@@ -45,11 +33,7 @@ export default class ProductEdit extends Component {
     };
   }
 
-  /**
-   * Component did mount
-   */
   componentDidMount() {
-    // En caso de ser una modificación cargo el anuncio a editar (para tener la versión más actualizada posible desde el backend)
     if (this.props.mode === 'edit' && this.props.match.params) {
       const slug = this.props.match.params.slug;
       this.props.loadProduct(slug);
@@ -58,18 +42,11 @@ export default class ProductEdit extends Component {
     }
   }
 
-  /**
-   * Cuando el componente se actualiza
-   */
   componentDidUpdate() {
     const { mode } = this.props;
-    // Para solucionar el caso en el que estando ya en editar, el usuario navega a crear. Al estar ambas opciones en el mismo componente, el flujo
-    // de react no pasa por el component did mount, y en ese caso el formulario aun estando en opción crear, mostraría los datos del anterior anuncio.
-    // Con este if, y llamando al clear del store, consigo vaciar el anuncio del store, y con ello del form.
     if (mode === 'create' && this.props.product._id !== '') {
       this.props.clearProduct();
     }
-    // Si se ha intentado guardar los cambios, y la operación ha concluido
     if (this.state.submit && this.props.ui.isUpdating === false) {
       if (!this.props.ui.error) {
         this.props.enqueueSnackbar(
@@ -84,37 +61,25 @@ export default class ProductEdit extends Component {
           }`,
           { variant: 'error' }
         );
-      // Evento reportado
       this.setState({ submit: false });
     }
   }
 
-  /**
-   * Open input file
-   */
   openInputFile = () => {
     this.inputFile.current.click();
   };
 
-  /**
-   * Hanle close modal
-   */
   changeInputFile = (ev) => {
-    // Actualizo la imagen y cierro el modal
     ev.stopPropagation();
     ev.preventDefault();
     const aux = this.props.product;
     aux.file = ev.target.files[0];
-    // Update state product
     this.setState({
       product: aux,
       imgTemp: URL.createObjectURL(aux.file),
     });
   };
 
-  /**
-   * Render
-   */
   render() {
     const { isUpdating, isFetching, error } = this.props.ui;
     const { mode } = this.props;
@@ -245,7 +210,7 @@ export default class ProductEdit extends Component {
                     onChange={this.handleChange('desc')}
                     multiline
                     rows={2}
-                    helperText='Introduce una descripción para el anuncio'
+                    helperText='Add a description'
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -262,7 +227,7 @@ export default class ProductEdit extends Component {
                             value='booked'
                           />
                         }
-                        label='Reservado'
+                        label='Booked'
                       />
                     </FormControl>
                     <FormControl fullWidth className='ProductEdit__FormControl'>
@@ -284,7 +249,7 @@ export default class ProductEdit extends Component {
                     type='submit'
                     variant='contained'
                     startIcon={<SaveIcon />}
-                    className='ButtonWallakeep ButtonWallakeep__Green'
+                    className='ButtonWallaclone ButtonWallaclone__Green'
                   >
                     Guardar
                   </Button>
@@ -303,10 +268,10 @@ export default class ProductEdit extends Component {
               </form>
             )}
           </main>
-          {isFetching && <Loading text={'fetching product'} />}
+          {isFetching && <Loading text={'Fetching Product'} />}
           {isUpdating && (
             <Loading
-              text={mode === 'edit' ? 'Editando anuncio' : 'Creando anuncio'}
+              text={mode === 'edit' ? 'Updating Product' : 'Creating Product'}
             />
           )}
           {error && <Error error={error} />}
@@ -316,9 +281,6 @@ export default class ProductEdit extends Component {
     );
   }
 
-  /**
-   * Cambio en un input tipo texto
-   */
   handleChange = (field) => (event) => {
     const aux = this.props.product;
     aux[field] = event.target.value;
@@ -327,9 +289,6 @@ export default class ProductEdit extends Component {
     });
   };
 
-  /**
-   * Cambio en un input tipo check
-   */
   handleCheck = (field) => (event) => {
     const aux = this.props.product;
     aux[field] = event.target.checked;
@@ -338,9 +297,6 @@ export default class ProductEdit extends Component {
     });
   };
 
-  /**
-   * Cambio en un input tipo number
-   */
   handleChangeNumber = (field) => (event) => {
     const aux = this.props.product;
     aux[field] = parseFloat(event.target.value);
@@ -351,39 +307,28 @@ export default class ProductEdit extends Component {
     }
   };
 
-  /**
-   * Selectores de tipo multiple choice
-   */
   handleChangeMultiple = (event) => {
-    // Obtengo el estado, actualizo los tags seleccionados
     const aux = this.props.product;
     aux.tags = event.target.value;
-    // Actualizo el estado
     this.setState({ product: aux });
   };
 
-  /**
-   * Manejador del submit del formulario
-   */
   handleSubmit = (ev) => {
     const { mode } = this.props;
     ev.preventDefault();
-    // Creo un anuncio con los datos del estado si es válido
     const product = new Product(this.props.product);
     product.file = this.props.product.file;
     if (mode === 'create') {
       product.img = product.file.name;
       product.thumbnail = product.file.name;
     }
-    // Si los datos son completos continuo con la operación
     if (product.isValid()) {
       this.setState({ submit: true });
       if (mode === 'create')
         this.props.createProduct(product, this.props.session.jwt);
       else this.props.editProduct(product, this.props.session.jwt);
     } else {
-      // El anuncio no es completo. Error
-      this.props.enqueueSnackbar('Los datos del anuncio no están completos', {
+      this.props.enqueueSnackbar('You must fulfill all the forms', {
         variant: 'error',
       });
     }

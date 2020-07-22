@@ -1,45 +1,33 @@
-// NPM Modules
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-// Material UI
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Container from '@material-ui/core/Container';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-// Models
 import Product from '../../models/Product';
-// Components
 import ModalConfirm from '../ModalConfirm';
 import Loading from '../Loading';
 import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Error from '../Error';
-// Assets
 import imgReserved from '../../assets/images/reserved.png';
 import imgSold from '../../assets/images/sold.png';
-// CSS
 import './styles.css';
 
-/**
- * Main App
- */
 export default function ProductDetail(props) {
   const slug = props.match.params.slug;
   const { loadProduct } = props;
 
-  // Use states
   const [deleting, setDeleting] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // Dispatch load product action
   useEffect(() => {
     loadProduct(slug);
   }, [slug, loadProduct]);
 
-  // Controlar fin de acción de borrado
   useEffect(() => {
     if (deleting && !props.isDeleting && !props.error) {
       props.enqueueSnackbar('Anuncio borrado con éxito', {
@@ -51,37 +39,32 @@ export default function ProductDetail(props) {
     }
   }, [props, deleting]);
 
-  // Reservar producto
   const bookProduct = () => {
     const product = new Product(props.product);
     product.booked = !product.booked;
     props.editProduct(product, props.session.jwt);
   };
 
-  // Sell product
   const sellProduct = () => {
     const product = new Product(props.product);
     product.sold = !product.sold;
     props.editProduct(product, props.session.jwt);
   };
 
-  // Delete product
   const deleteProduct = () => {
     setShowModal(false);
     setDeleting(true);
     props.deleteProduct(props.product.slug, props.session.jwt);
   };
 
-  // Show modal
   const showModalConfirmation = () => {
     setShowModal(true);
   };
-  // Hide modal
+
   const hideModalConfirmation = () => {
     setShowModal(false);
   };
 
-  // Render
   return (
     <React.Fragment>
       <NavBar />
@@ -143,7 +126,7 @@ export default function ProductDetail(props) {
                           variant='contained'
                           color='secondary'
                           startIcon={<EditIcon />}
-                          className='ButtonWallakeep ButtonWallakeep__Green'
+                          className='ButtonWallaclone ButtonWallaclone__Green'
                         >
                           Editar
                         </Button>
@@ -151,7 +134,7 @@ export default function ProductDetail(props) {
                       <Button
                         type='button'
                         variant='contained'
-                        className='ButtonWallakeep ButtonWallakeep__Blue'
+                        className='ButtonWallaclone ButtonWallaclone__Blue'
                         disabled={props.product.sold}
                         onClick={bookProduct}
                       >
@@ -160,7 +143,7 @@ export default function ProductDetail(props) {
                       <Button
                         type='button'
                         variant='contained'
-                        className='ButtonWallakeep ButtonWallakeep__Red'
+                        className='ButtonWallaclone ButtonWallaclone__Red'
                         onClick={sellProduct}
                       >
                         {!props.product.sold ? 'Vendido' : 'Anular venta'}
@@ -168,7 +151,7 @@ export default function ProductDetail(props) {
                       <Button
                         type='button'
                         variant='contained'
-                        className='ButtonWallakeep ButtonWallakeep__Red'
+                        className='ButtonWallaclone ButtonWallaclone__Red'
                         onClick={showModalConfirmation}
                       >
                         Borrar

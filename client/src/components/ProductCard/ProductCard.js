@@ -1,24 +1,15 @@
-// NPM Modules
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
-// Material UI
 import Chip from '@material-ui/core/Chip';
-// Own modules
-// Models
 import { PRODUCT_CONSTANTS } from '../../models/Product';
-// Assets
 import imgBuy from '../../assets/images/buy.png';
 import imgSell from '../../assets/images/sell.png';
 import imgReserved from '../../assets/images/reserved.png';
 import imgSold from '../../assets/images/sold.png';
-// CSS
 import './styles.css';
 
-/**
- * Functional component to render an product card
- */
 export default function ProductCard(props) {
   return (
     <article className='ProductCard'>

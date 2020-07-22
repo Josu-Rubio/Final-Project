@@ -1,7 +1,5 @@
-// NPM Modules
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-/* Containers */
 import Catalog from '../Catalog';
 import ProductDetail from '../ProductDetail';
 import ProductEdit from '../ProductEdit';
@@ -11,22 +9,11 @@ import Remember from '../Remember';
 import Reset from '../Reset';
 import Profile from '../Profile';
 import Home from '../Home';
-// Components
 import ErrorBoundary from '../ErrorBoundary';
 import PrivateRoute from '../PrivateRoute';
 import Error404 from '../Error404';
-// Models
-// Own modules
-// Assets
-// CSS
 
-/**
- * Main App
- */
 export default function App(props) {
-  /**
-   * Render
-   */
   return (
     <ErrorBoundary>
       <Router>

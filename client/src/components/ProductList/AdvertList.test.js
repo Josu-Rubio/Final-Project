@@ -1,9 +1,7 @@
-// Node modules
 import React from 'react';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow } from 'enzyme';
-// Own modules
 import ProductList from './ProductList';
 import { products } from '../../assets/tests/data';
 

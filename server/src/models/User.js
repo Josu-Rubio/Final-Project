@@ -20,7 +20,7 @@ UserSchema.statics.insert = async function (user) {
   try {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
     user.token = crypto.randomBytes(10).toString('hex');
-    user.active = false;
+    user.active = true;
     return await user.save();
   } catch (error) {
     console.log('Error creating user: ', error);

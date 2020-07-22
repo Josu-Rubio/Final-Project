@@ -1,7 +1,5 @@
-// NPM Modules
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// Material UI
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,28 +14,21 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ViewListIcon from '@material-ui/icons/ViewList';
-// Own modules
-// Assets
 import imageLogo from '../../assets/images/logo2.png';
 import imageAvatar from '../../assets/images/user.png';
-// CSS
 import './styles.css';
 
-/**
- * Componente NavBar (uso del hook useState)
- */
 export default function NavBar(props) {
-  // Estado del componente funcional mediante el "useState hook"
   const [anchorUserMenu, setAnchorUserMenu] = useState(null);
 
-  // Render del componente
   return (
-    <AppBar title='Wallakeep' position='static' className='NavBar'>
+    <AppBar title='Wallaclone' position='static' className='NavBar'>
       <Container>
         <Toolbar className='NavBar__Toolbar'>
           <Link to='/' className='NavBar__Brand'>
             <img src={imageLogo} alt='logo' className='NavBar__Brand' />
           </Link>
+
           {props.session.email && (
             <div>
               <IconButton
@@ -77,7 +68,7 @@ export default function NavBar(props) {
                   </ListItemIcon>
                   <ListItemText
                     className='NavBar__MenuItemText'
-                    primary='Añádir anuncio'
+                    primary='Crear Anuncio'
                   />
                 </MenuItem>
                 <MenuItem

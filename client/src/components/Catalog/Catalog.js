@@ -1,29 +1,15 @@
-// NPM Modules
 import React, { Component } from 'react';
-// Material UI
 import Container from '@material-ui/core/Container';
-// Components
 import ProductListSmall from '../ProductListSmall';
 import Loading from '../Loading';
 import Footer from '../Footer/';
 import NavBar from '../NavBar';
 import Error from '../Error';
-// Own modules
-// Assets
-// CSS
 import './styles.css';
 
-/**
- * Main App
- */
 export default class Catalog extends Component {
-  /**
-   * Render
-   */
   render() {
-    // Variables para el UI
     const { isFetching, error } = this.props.ui;
-    // Render
     return (
       <React.Fragment>
         <NavBar />
@@ -60,9 +46,6 @@ export default class Catalog extends Component {
     );
   }
 
-  /**
-   * Component did mount
-   */
   componentDidMount() {
     this.props.loadProducts();
   }

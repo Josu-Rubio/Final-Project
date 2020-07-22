@@ -36,7 +36,7 @@ module.exports = (options) => {
     generateHTML(options.view, options).then((result) => {
       const html = juice(result);
       let mailOptions = {
-        from: 'Wallaclone App <no-reply@wallaclone.com>',
+        from: 'Wallaclone App <noreply@wallaclone.com>',
         to: options.email,
         subject: options.subject,
         text: htmlToText.fromString(html),

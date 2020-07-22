@@ -1,54 +1,63 @@
-// NPM Modules
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// Material UI
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Button from '@material-ui/core/Button';
-// Own components
 import InputForm from '../Forms/InputForm';
 import Form from '../Forms/Form';
 import withForm from '../Forms/Form/withForm';
-// Models
-// Own modules
 import AuthServices from '../../services/AuthServices';
-// Assets
 import imageLogo from '../../assets/images/logo2.png';
-// CSS
 import './styles.css';
 
-
-/**
- * Login Form
- */
 class Register extends Component {
-
-  /**
-   * Constructor
-   * @param {*} props 
-   */
   constructor(props) {
     super(props);
     this.state = {
       error: '',
-      created: false
-    }
+      created: false,
+    };
   }
-  
-  /**
-   * Render
-   */
+
   render() {
     return (
       <div className='Login'>
         <div className='Login__Wrapper'>
           <Form className='Login__Form' onSubmit={this.resetPassword}>
-            <img src={imageLogo} className='Login__Logo' alt='nodepop-logo' />
-            <InputForm name='password' type='password' placeholder='type your password' autocomplete='on' required icon={<LockOpenIcon/>}/>
-            <InputForm name='password_2' type='password' placeholder='repeat your password' autocomplete='on' required icon={<LockOpenIcon/>}/>
+            <img
+              src={imageLogo}
+              className='Login__Logo'
+              alt='wallaclone-logo'
+            />
+            <InputForm
+              name='password'
+              type='password'
+              placeholder='type your password'
+              autocomplete='on'
+              required
+              icon={<LockOpenIcon />}
+            />
+            <InputForm
+              name='password_2'
+              type='password'
+              placeholder='repeat your password'
+              autocomplete='on'
+              required
+              icon={<LockOpenIcon />}
+            />
             <p className='Login__Help'>enter your new password</p>
             <div className='Login__Buttons'>
-              <Button className='button' type='submit' variant='contained' color='primary'> Reset password </Button>
-              <Link className='Login__Link' to='/login'>Go to login</Link>
+              <Button
+                className='button'
+                type='submit'
+                variant='contained'
+                color='primary'
+              >
+                {' '}
+                Reset password{' '}
+              </Button>
+              <Link className='Login__Link' to='/login'>
+                Go to login
+              </Link>
             </div>
           </Form>
         </div>
@@ -56,31 +65,35 @@ class Register extends Component {
     );
   }
 
-  /**
-   * Handle onSubmit event
-   */
   resetPassword = async (inputs) => {
-    // Campos relevantes para generar el objeto sesión
-    const { password, password_2 } = {...inputs};
-    // Son todos obligatorios, en caso de no estar no permito continuar
-    if ( password !== password_2 ) {
-      this.props.enqueueSnackbar('Ambos passwords deben ser iguales', { variant: 'error', });
+    const { password, password_2 } = { ...inputs };
+    if (password !== password_2) {
+      this.props.enqueueSnackbar('Password does not match.', {
+        variant: 'error',
+      });
     } else {
-      // Reseteo el password
       try {
-        const user = await AuthServices.reset(this.props.match.params.token, password);
+        const user = await AuthServices.reset(
+          this.props.match.params.token,
+          password
+        );
         if (user) {
-          this.props.enqueueSnackbar('Password reseteado con exito', { variant: 'success', });
+          this.props.enqueueSnackbar('Reset password success.', {
+            variant: 'success',
+          });
         } else {
-          this.props.enqueueSnackbar('Error reseteando password. Intenteló de nuevo o contacte con el administrador', { variant: 'error', });
-        }        
+          this.props.enqueueSnackbar(
+            'Error reseting password, please try again later.',
+            { variant: 'error' }
+          );
+        }
       } catch (error) {
-        this.props.enqueueSnackbar(error.message, { variant: 'error', });
+        this.props.enqueueSnackbar(error.message, { variant: 'error' });
       } finally {
         this.props.history.push('/login');
       }
     }
-  }
+  };
 }
 
 export default withForm(Register);

@@ -1,64 +1,48 @@
-// NPM Modules
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-// Material UI
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AttachMoneyOutlinedIcon from '@material-ui/icons/AttachMoneyOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-// Own components
 import ModalConfirm from '../ModalConfirm';
-// Own modules
-// Models
 import { PRODUCT_CONSTANTS } from '../../models/Product';
 import Product from '../../models/Product';
-// Assets
 import imgReserved from '../../assets/images/reserved.png';
 import imgSold from '../../assets/images/sold.png';
-// CSS
 import './styles.css';
 
-/**
- * Functional component to render an product card
- */
 export default function ProductCardSmall(props) {
-  // Use state to show/hide modal
   const [showModal, setShowModal] = useState(false);
 
-  // Reservar producto
   const bookProduct = () => {
     const product = new Product({ ...props });
     product.booked = !product.booked;
     props.editProduct(product, props.session.jwt);
   };
 
-  // Sell product
   const sellProduct = () => {
     const product = new Product({ ...props });
     product.sold = !product.sold;
     props.editProduct(product, props.session.jwt);
   };
 
-  // Go to edit
   const toEdit = () => {
     props.history.push(`/product/edit/${props.slug}`);
   };
 
-  // Delete product
   const deleteProduct = () => {
     setShowModal(false);
     props.deleteProduct(props.slug, props.session.jwt);
   };
 
-  // Show modal
   const showModalConfirmation = () => {
     setShowModal(true);
   };
-  // Hide modal
+
   const hideModalConfirmation = () => {
     setShowModal(false);
   };
@@ -119,8 +103,8 @@ export default function ProductCardSmall(props) {
           <div className='ProductCardSmall__Actions'>
             <Button
               type='button'
-              className={`ButtonWallakeep ButtonWallakeep__Clear ButtonWallakeep__ClearToBlue ${
-                props.booked && 'ButtonWallakeep__ClearToBlue--active'
+              className={`ButtonWallaclone ButtonWallaclone__Clear ButtonWallaclone__ClearToBlue ${
+                props.booked && 'ButtonWallaclone__ClearToBlue--active'
               }`}
               disabled={props.sold}
               variant='contained'
@@ -130,10 +114,10 @@ export default function ProductCardSmall(props) {
             </Button>
             <Button
               type='button'
-              className={`ButtonWallakeep ButtonWallakeep__Clear ButtonWallakeep__ClearToRed 
+              className={`ButtonWallaclone ButtonWallaclone__Clear ButtonWallaclone__ClearToRed 
                                 ${
                                   props.sold &&
-                                  'ButtonWallakeep__ClearToRed--active'
+                                  'ButtonWallaclone__ClearToRed--active'
                                 }`}
               variant='contained'
               onClick={sellProduct}
@@ -142,7 +126,7 @@ export default function ProductCardSmall(props) {
             </Button>
             <Button
               type='button'
-              className='ButtonWallakeep ButtonWallakeep__Clear ButtonWallakeep__ClearToGreen'
+              className='ButtonWallaclone ButtonWallaclone__Clear ButtonWallaclone__ClearToGreen'
               disabled={props.sold}
               variant='contained'
               onClick={toEdit}
@@ -151,7 +135,7 @@ export default function ProductCardSmall(props) {
             </Button>
             <Button
               type='button'
-              className='ButtonWallakeep ButtonWallakeep__Clear ButtonWallakeep__ClearToGray'
+              className='ButtonWallaclone ButtonWallaclone__Clear ButtonWallaclone__ClearToGray'
               disabled={props.sold}
               variant='contained'
               onClick={showModalConfirmation}

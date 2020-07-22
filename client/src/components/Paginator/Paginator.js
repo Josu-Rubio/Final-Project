@@ -1,18 +1,10 @@
-// NPM Modules
 import React from 'react';
-// Material UI
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-// Own modules
-// Assets
 import './styles.css';
-// CSS
 
-/**
- * Functional component for the product paginator
- */
 export default function Paginator(props) {
   const handleBack = () =>
     props.handleMovePaginator(props.currentPage > 0 ? -1 : 0);
@@ -31,7 +23,7 @@ export default function Paginator(props) {
           size='small'
           onClick={handleBack}
           disabled={props.currentPage === 0}
-          className='ButtonWallakeep ButtonWallakeep__Green'
+          className='ButtonWallaclone ButtonWallaclone__Green'
         >
           <KeyboardArrowLeft />
           Back
@@ -42,7 +34,7 @@ export default function Paginator(props) {
           size='small'
           onClick={handleNext}
           disabled={props.currentPage === props.numPages - 1}
-          className='ButtonWallakeep ButtonWallakeep__Green'
+          className='ButtonWallaclone ButtonWallaclone__Green'
         >
           Next
           <KeyboardArrowRight />
