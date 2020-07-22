@@ -1,52 +1,75 @@
 'use strict';
 
-const express = require('express');
-const https = require('https');
-const fs = require('fs');
+var app = require('./app');
+var debug = require('debug')('nodeapi:server');
+var http = require('http');
 const cluster = require('cluster');
-
-const database = require('./database');
-const server = require('./server');
-
+const os = require('os');
 require('dotenv').config();
 
 if (cluster.isMaster) {
+  const numCpus = os.cpus().length;
+  for (let i = 0; i < numCpus; i++) {
+    cluster.fork();
+  }
   cluster.on('listening', (worker, address) => {
     console.log(
-      `Worker ${worker.id} con pid ${worker.process.pid} is now connected to port ${address.port}`
+      `Worker ${worker.id} with pid ${worker.process.pid} connected to port ${address.port}`
     );
   });
 
   cluster.on('exit', (worker, code, signal) => {
     console.log(
-      `worker ${worker.process.pid} exited with error code ${code} and signal ${signal}`
+      `Worker ${worker.id} with pid ${worker.process.pid} finished with code ${code} and signal ${signal}`
     );
-    console.log('Starting a new worker...');
-    cluster.fork();
   });
-
-  const numCPUs = require('os').cpus().length;
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
 } else {
-  database
-    .connectToMongo(process.env.MONGODB_URL)
-    .then((conn) => {
-      const app = server(express(), conn);
+  var port = normalizePort(process.env.PORT || '3000');
+  app.set('port', port);
 
-      const credentials = {
-        key: fs.readFileSync(process.env.HTTPS_KEY, 'utf8'),
-        cert: fs.readFileSync(process.env.HTTPS_CERT, 'utf8'),
-      };
+  var server = http.createServer(app);
 
-      const appServer = https.createServer(credentials, app);
-      appServer.listen(process.env.PORT, () => {
-        console.log(`OK - HTTPS server running on port ${process.env.PORT}`);
-      });
-    })
-    .catch((error) => {
-      console.log('Error connecting mongodb');
-      console.log(error);
-    });
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+}
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    return val;
+  }
+
+  if (port >= 0) {
+    return port;
+  }
+
+  return false;
+}
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  debug('Listening on ' + bind);
 }

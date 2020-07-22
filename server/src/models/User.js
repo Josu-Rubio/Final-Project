@@ -59,5 +59,14 @@ UserSchema.statics.activate = async function (id, token) {
   }
 };
 
+UserSchema.statics.deleteAll = async function () {
+  try {
+    await User.deleteMany({});
+  } catch (error) {
+    console.log('Error while deleting users.');
+    console.log(error);
+  }
+};
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

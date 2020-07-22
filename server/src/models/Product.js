@@ -16,7 +16,7 @@ const ProductSchema = new Schema(
       },
     ],
     img: { type: String, required: true },
-    thumbnail: { type: String, required: true },
+    thumbnail: { type: String },
     desc: { type: String, max: 140 },
     booked: { type: Boolean, required: false, default: false },
     sold: { type: Boolean, required: false, default: false },
