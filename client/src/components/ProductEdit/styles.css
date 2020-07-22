@@ -1,0 +1,94 @@
+.ProductEdit {
+  padding: 1rem;
+}
+
+.ProductEdit__Form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+.ProductEdit__Form .ProductEdit__Footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem;
+}
+
+.ProductEdit_Picture {
+  margin: 1rem 0 0.5rem 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.3s all ease;
+  background-color: transparent;
+  border: none;
+  display: inline-block;
+  height: 300px;
+  overflow: hidden;
+  outline: none;
+}
+
+.ProductEdit_Picture img {
+  width: 100%;
+  height: 100%;
+}
+
+.ProductEdit_Picture:hover,
+.ProductEdit_Picture:focus,
+.ProductEdit_Picture:active,
+.ProductEdit_Picture:active {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ProductEdit__Modal .Modal__Title {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ProductEdit__Modal .Modal__Content,
+.ProductEdit__Modal .Modal__Actions {
+  padding: 1rem 1.25rem;
+}
+
+@media only screen and (min-device-width: 700px) {
+  .ProductEdit__Form {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    align-items: center;
+  }
+
+  .ProductEdit_Picture {
+    align-self: flex-start;
+    grid-row: 1/8;
+  }
+
+  .ProductEdit__FormControl {
+    grid-column: 2;
+  }
+
+  .ProductEdit__Footer {
+    grid-column: span 2;
+  }
+}
+
+@media only screen and (min-device-width: 900px) {
+  .ProductEdit__Form {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+    align-items: center;
+    margin: 1rem 0 0 0;
+  }
+
+  .ProductEdit_Picture {
+    align-self: flex-start;
+    grid-row: 1/8;
+  }
+
+  .ProductEdit__FormControl {
+    grid-column: span 2;
+  }
+
+  .ProductEdit__Footer {
+    grid-column: span 3;
+  }
+}

@@ -79,8 +79,8 @@ module.exports = {
     if (req.body.password === req.body.password2) {
       let user = await User.insert(new User({ ...req.body }));
       if (user) {
-        const apiURL = `https://localhost:8000/apiv1/user/activate/${user.token}`;
-        const webURL = `https://localhost:8000/user/activate/${user.token}`;
+        const apiURL = `http://localhost:8000/apiv1/user/activate/${user.token}`;
+        const webURL = `http://localhost:8000/user/activate/${user.token}`;
         mail({
           email: user.email,
           subject: 'Activate account',

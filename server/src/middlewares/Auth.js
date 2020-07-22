@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
       data: 'Not Authorized',
     });
   }
-  if (reqToken.startsWith('Bearer') || reqToken.startsWith('bearer')) {
+  if (reqToken.startsWith('Monolowana') || reqToken.startsWith('monolowana')) {
     reqToken = reqToken.split(' ')[1];
   }
   req.token = reqToken;

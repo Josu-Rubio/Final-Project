@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import setAuthToken from '../utils/setAuthToken';
-import { setCurrentUser, logoutUser } from '../actions/authActions';
+import setAuthToken from '../../utils/setAuthToken';
+import { setCurrentUser, logoutUser } from '../../actions/authActions';
 
 import { Provider } from 'react-redux';
-import store from '../store';
+import store from '../../store';
 
-import { NavBar, Landing } from '../components/layout';
-import { Register, Login, ForgotPassword } from '../components/auth';
-import { ProductsList, CreateAd, UpdateAd } from '../components/products';
-import PrivateRoute from '../components/private-route/PrivateRoute';
-import Dashboard from '../components/dashboard/Dashboard';
+import { NavBar, Landing } from '../layout';
+import { Register, Login, ForgotPassword } from '../auth';
+import { ProductsList, CreateAd, UpdateAd } from '../products';
+import PrivateRoute from '../private-route/PrivateRoute';
+import Dashboard from '../dashboard/Dashboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -45,7 +45,11 @@ function App() {
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/products/list' component={ProductsList} />
           <PrivateRoute exact path='/products/create' component={CreateAd} />
-          <Route exact path='/products/update/:id' component={UpdateAd} />
+          <PrivateRoute
+            exact
+            path='/products/update/:id'
+            component={UpdateAd}
+          />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <Route exact path='/forgotpassword' component={ForgotPassword} />
         </Switch>

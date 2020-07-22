@@ -103,7 +103,7 @@ class ProductsList extends Component {
         filterable: true,
       },
       {
-        Header: 'Photo',
+        Header: 'Img',
         accessor: 'img',
       },
       {
@@ -142,7 +142,7 @@ class ProductsList extends Component {
             data={products}
             columns={columns}
             loading={isLoading}
-            defaultPageSize={10}
+            defaultPageSize={9}
             showPageSizeOptions={true}
             minRows={0}
           />

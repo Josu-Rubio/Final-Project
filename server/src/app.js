@@ -47,7 +47,7 @@ database
         resave: false,
         saveUninitialized: true,
         cookie: {
-          secure: true, // only send trough https
+          secure: false, // true --> only send trough https
           maxAge: 1000 * 3600 * 24 * 2, // expire time is 2 days
         },
         store: new mongoStore({

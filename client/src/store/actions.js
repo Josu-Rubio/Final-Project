@@ -1,5 +1,5 @@
 // API
-import AdvertServices from '../services/AdvertServices';
+import ProductServices from '../services/ProductServices';
 import AuthServices from '../services/AuthServices';
 // Own modules
 import LocalStorage from '../utils/Storage';
@@ -9,7 +9,7 @@ import {
   FETCH_TAGS_REQUEST,
   FETCH_TAGS_FAILURE,
   FETCH_TAGS_SUCCESS,
-  // Adverts
+  // Products
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_FAILURE,
   FETCH_PRODUCT_SUCCESS,
@@ -94,7 +94,7 @@ export const fetchTags = () => {
   return async function (dispatch, getState) {
     dispatch(fetchTagsRequest());
     try {
-      const tags = await AdvertServices.getTags();
+      const tags = await ProductServices.getTags();
       dispatch(fetchTagsSuccess(tags));
     } catch (error) {
       dispatch(fetchTagsFailure(error.message));
@@ -102,80 +102,80 @@ export const fetchTags = () => {
   };
 };
 
-export const fetchAdvert = (slug) => {
+export const fetchProduct = (slug) => {
   return async function (dispatch, getState) {
-    dispatch(fetchAdvertRequest());
+    dispatch(fetchProductRequest());
     try {
-      const product = await AdvertServices.getAdvert(slug);
-      dispatch(fetchAdvertSuccess(product));
+      const product = await ProductServices.getProduct(slug);
+      dispatch(fetchProductSuccess(product));
     } catch (error) {
-      dispatch(fetchAdvertFailure(error.message));
+      dispatch(fetchProductFailure(error.message));
     }
   };
 };
 
-export const fetchAdverts = () => {
+export const fetchProducts = () => {
   return async function (dispatch, getState) {
-    dispatch(fetchAdvertsRequest());
+    dispatch(fetchProductsRequest());
     try {
-      const products = await AdvertServices.getAdverts();
-      dispatch(fetchAdvertsSuccess(products));
+      const products = await ProductServices.getProducts();
+      dispatch(fetchProductsSuccess(products));
     } catch (error) {
-      dispatch(fetchAdvertsFailure(error.message));
+      dispatch(fetchProductsFailure(error.message));
     }
   };
 };
 
-export const searchAdverts = (filters) => {
+export const searchProducts = (filters) => {
   return async function (dispatch, getState) {
-    dispatch(fetchAdvertsRequest());
+    dispatch(fetchProductsRequest());
     try {
-      const products = await AdvertServices.searchAdverts(filters);
-      dispatch(fetchAdvertsSuccess(products));
+      const products = await ProductServices.searchProducts(filters);
+      dispatch(fetchProductsSuccess(products));
     } catch (error) {
-      dispatch(fetchAdvertsFailure(error.message));
+      dispatch(fetchProductsFailure(error.message));
     }
   };
 };
 
-export const editAdvert = (product, jwt) => {
+export const editProduct = (product, jwt) => {
   return async function (dispatch, getState) {
-    dispatch(editAdvertRequest());
+    dispatch(editProductRequest());
     try {
-      const response = await AdvertServices.editAdvert(product, jwt);
-      dispatch(editAdvertSuccess(response));
+      const response = await ProductServices.editProduct(product, jwt);
+      dispatch(editProductSuccess(response));
     } catch (error) {
-      dispatch(editAdvertFailure(error.message));
+      dispatch(editProductFailure(error.message));
     }
   };
 };
 
-export const createAdvert = (product, jwt) => {
+export const createProduct = (product, jwt) => {
   return async function (dispatch, getState) {
-    dispatch(createAdvertRequest());
+    dispatch(createProductRequest());
     try {
       delete product._id;
-      const response = await AdvertServices.postAdvert(product, jwt);
-      dispatch(createAdvertSuccess(response));
+      const response = await ProductServices.postProduct(product, jwt);
+      dispatch(createProductSuccess(response));
     } catch (error) {
-      dispatch(createAdvertFailure(error.message));
+      dispatch(createProductFailure(error.message));
     }
   };
 };
 
-export const deleteAdvert = (slug, jwt) => {
+export const deleteProduct = (slug, jwt) => {
   return async function (dispatch, getState) {
-    dispatch(deleteAdvertRequest());
+    dispatch(deleteProductRequest());
     try {
-      const response = await AdvertServices.deleteAdvert(slug, jwt);
-      dispatch(deleteAdvertSuccess(response));
+      const response = await ProductServices.deleteProduct(slug, jwt);
+      dispatch(deleteProductSuccess(response));
     } catch (error) {
-      dispatch(deleteAdvertFailure(error.message));
+      dispatch(deleteProductFailure(error.message));
     }
   };
 };
 
-export const clearAdvert = () => ({
+export const clearProduct = () => ({
   type: CLEAR_PRODUCT,
 });
 
@@ -248,72 +248,72 @@ const fetchTagsSuccess = (tags) => ({
   tags,
 });
 
-const fetchAdvertRequest = () => ({
+const fetchProductRequest = () => ({
   type: FETCH_PRODUCT_REQUEST,
 });
 
-const fetchAdvertFailure = (error) => ({
+const fetchProductFailure = (error) => ({
   type: FETCH_PRODUCT_FAILURE,
   error,
 });
 
-const fetchAdvertSuccess = (product) => ({
+const fetchProductSuccess = (product) => ({
   type: FETCH_PRODUCT_SUCCESS,
   product,
 });
 
-const fetchAdvertsRequest = () => ({
+const fetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,
 });
 
-const fetchAdvertsFailure = (error) => ({
+const fetchProductsFailure = (error) => ({
   type: FETCH_PRODUCTS_FAILURE,
   error,
 });
 
-const fetchAdvertsSuccess = (products) => ({
+const fetchProductsSuccess = (products) => ({
   type: FETCH_PRODUCTS_SUCCESS,
   products,
 });
 
-const editAdvertRequest = () => ({
+const editProductRequest = () => ({
   type: EDIT_PRODUCT_REQUEST,
 });
 
-const editAdvertFailure = (error) => ({
+const editProductFailure = (error) => ({
   type: EDIT_PRODUCT_FAILURE,
   error,
 });
 
-const editAdvertSuccess = (product) => ({
+const editProductSuccess = (product) => ({
   type: EDIT_PRODUCT_SUCCESS,
   product,
 });
 
-const deleteAdvertRequest = () => ({
+const deleteProductRequest = () => ({
   type: DELETE_PRODUCT_REQUEST,
 });
 
-const deleteAdvertFailure = (error) => ({
+const deleteProductFailure = (error) => ({
   type: DELETE_PRODUCT_FAILURE,
   error,
 });
 
-const deleteAdvertSuccess = (product) => ({
+const deleteProductSuccess = (product) => ({
   type: DELETE_PRODUCT_SUCCESS,
   product,
 });
 
-const createAdvertRequest = () => ({
+const createProductRequest = () => ({
   type: CREATE_PRODUCT_REQUEST,
 });
 
-const createAdvertFailure = (error) => ({
+const createProductFailure = (error) => ({
   type: CREATE_PRODUCT_FAILURE,
   error,
 });
 
-const createAdvertSuccess = (product) => ({
+const createProductSuccess = (product) => ({
   type: CREATE_PRODUCT_SUCCESS,
   product,
 });

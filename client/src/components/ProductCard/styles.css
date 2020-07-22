@@ -1,0 +1,105 @@
+.ProductCard {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.ProductCard__Header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0.8rem 0.8rem 0 0.8rem;
+  height: 70px;
+}
+
+.ProductCard__HeaderTitle {
+  height: 100%;
+}
+
+.ProductCard__Header img {
+  width: 28px;
+  height: 28px;
+  margin-right: 0.6rem;
+}
+
+.ProductCard__Header h2 {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  line-height: 1.2rem;
+}
+
+.ProductCard__Date {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 0.7rem;
+  line-height: 0.85rem;
+}
+
+.ProductCard__Media {
+  position: relative;
+  text-align: center;
+  height: 200px;
+}
+
+.ProductCard__Media img {
+  height: 90%;
+  width: auto;
+  max-width: 95%;
+  border-radius: 10px;
+}
+
+.ProductCard__Status {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  height: 50px !important;
+}
+
+.ProductCard__Price {
+  position: absolute;
+  padding: 0.4rem 0.5rem;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--main-color);
+  border-radius: 3px;
+  color: white;
+  box-shadow: 2px 2px 10px black;
+}
+
+.ProductCard__Currency {
+  margin-left: 5px;
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.ProductCard__Footer {
+  padding: 0.8rem;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ProductCard__Header .ProductCard__Link,
+.ProductCard__FooterActions .ProductCard__Link {
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ProductCard__Header .ProductCard__Link:hover,
+.ProductCard__FooterActions .ProductCard__Link:hover {
+  color: var(--main-color);
+}
+
+.ProductCard__FooterActions .ProductCard__Link:first-child {
+  margin-right: 10px;
+}
+
+.Ad__Tags .Ad__Tag:last-child {
+  margin-right: 0;
+}

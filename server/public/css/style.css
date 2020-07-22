@@ -1,14 +1,17 @@
 /* Simple reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-ul, li {  
-  list-style: none; 
-  -webkit-margin-before: 0; 
+ul,
+li {
+  list-style: none;
+  -webkit-margin-before: 0;
   margin-block-start: 0;
   -webkit-margin-after: 0;
   margin-block-end: 0;
@@ -20,9 +23,16 @@ ul, li {
   padding-inline-start: 0;
 }
 
-a { text-decoration: none; }
+a {
+  text-decoration: none;
+}
 
-img, embed, object, video { max-width: 100%; }
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
 
 /* Estilos principales */
 body {
@@ -34,10 +44,10 @@ body {
 :root {
   --main-color: rgb(19, 193, 172);
   --main-color-dark: rgb(14, 147, 131);
-  --main-color-light:  rgb(168, 245, 236);
+  --main-color-light: rgb(168, 245, 236);
   --dark-grey: rgb(30, 30, 36);
   --medium-grey: rgb(48, 48, 54);
-  --light-grey: rgba(216, 220, 224, .7);
+  --light-grey: rgba(216, 220, 224, 0.7);
   --main-white: rgb(250, 250, 250);
   --main-black: rgb(2, 2, 2);
 }
@@ -51,35 +61,55 @@ body {
 }
 
 /* Estilos de etiquetas de los anuncios */
-.badge { color: white; }
-.badge-comic { background-color: rgb(230, 13, 164); }
-.badge-lifestyle { background-color: rgb(0, 123, 255); }
-.badge-mobile { background-color: rgb(40, 167, 69); }
-.badge-motor { background-color: rgb(220, 53, 69); }
-.badge-work { background-color: rgb(108, 117, 125); }
+.badge {
+  color: white;
+}
+.badge-comic {
+  background-color: rgb(230, 13, 164);
+}
+.badge-lifestyle {
+  background-color: rgb(0, 123, 255);
+}
+.badge-electronics {
+  background-color: rgb(40, 167, 69);
+}
+.badge-motor {
+  background-color: rgb(220, 53, 69);
+}
+.badge-work {
+  background-color: rgb(108, 117, 125);
+}
 
 /* Estilos de las tarjetas de anuncios */
-.card { position: relative; }
-.card-title { font-size: .9rem; }
-.card-img-top { height: 175px; }
-.card-text { font-size: 1rem; }
+.card {
+  position: relative;
+}
+.card-title {
+  font-size: 0.9rem;
+}
+.card-img-top {
+  height: 175px;
+}
+.card-text {
+  font-size: 1rem;
+}
 
-.card-icon { 
+.card-icon {
   position: absolute;
-  width: 32px; 
+  width: 32px;
   top: 10px;
   left: 10px;
 }
 
 .price {
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: bold;
   display: block;
   position: absolute;
   top: 140px;
   right: 10px;
   padding: 3px 10px;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   color: white;
 }
@@ -92,21 +122,25 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 25px 10px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: white;
   background-color: var(--medium-grey);
 }
 
 .footer-content {
-  display: flex;    
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   line-height: 1.3rem;
 }
 
-.footer-content a { text-transform: capitalize; }
-.footer-content p:not(:last-child) { margin-bottom: 10px; }
+.footer-content a {
+  text-transform: capitalize;
+}
+.footer-content p:not(:last-child) {
+  margin-bottom: 10px;
+}
 
 .social {
   display: flex;
@@ -124,24 +158,42 @@ footer {
   line-height: 2rem;
 }
 
-.social-icon img { 
-  height: 2rem; 
+.social-icon img {
+  height: 2rem;
   width: 2rem;
   margin: 0;
   border-radius: 50px;
 }
 
-.social-icon { margin: 0 10px; }
+.social-icon {
+  margin: 0 10px;
+}
 
-.social-icon--twitter { color: rgb(29, 161, 242); }
-.social-icon--github { color: rgb(255, 255, 255); }
-.social-icon--linkedin { color: rgb(0, 119, 181); }
-.social-icon--home { color: rgb(255, 69, 0); }
+.social-icon--twitter {
+  color: rgb(29, 161, 242);
+}
+.social-icon--github {
+  color: rgb(255, 255, 255);
+}
+.social-icon--linkedin {
+  color: rgb(0, 119, 181);
+}
+.social-icon--home {
+  color: rgb(255, 69, 0);
+}
 
-.social-icon:hover .social-icon--twitter { color: rgb(1, 137, 221); }
-.social-icon:hover .social-icon--github { color: rgb(240, 240, 240); }
-.social-icon:hover .social-icon--linkedin { color: rgb(6, 102, 153); }
-.social-icon:hover .social-icon--home { color: rgb(217, 59, 2); }
+.social-icon:hover .social-icon--twitter {
+  color: rgb(1, 137, 221);
+}
+.social-icon:hover .social-icon--github {
+  color: rgb(240, 240, 240);
+}
+.social-icon:hover .social-icon--linkedin {
+  color: rgb(6, 102, 153);
+}
+.social-icon:hover .social-icon--home {
+  color: rgb(217, 59, 2);
+}
 
 /**
  * LOGIN
@@ -153,7 +205,11 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(-45deg, var(--main-color), var(--main-color-light));
+  background: linear-gradient(
+    -45deg,
+    var(--main-color),
+    var(--main-color-light)
+  );
 }
 
 .login-wrapper {
@@ -162,7 +218,7 @@ footer {
   padding: 50px 30px;
   width: 400px;
   max-width: 90%;
-  box-shadow: 5px 10px 20px rgba(0,0,0,0.35);
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.35);
   text-align: center;
 }
 
@@ -184,7 +240,7 @@ footer {
   margin: 35px 0 10px 0;
 }
 
-.login-form .help{
+.login-form .help {
   font-weight: bold;
   text-transform: lowercase;
   color: gray;
@@ -195,7 +251,7 @@ footer {
 }
 
 .login-form .alert {
-  font-size: .75rem;
+  font-size: 0.75rem;
   padding: 7.5px;
 }
 
@@ -216,7 +272,11 @@ footer {
  * Navbar
  */
 .navbar {
-  background: linear-gradient(-45deg, var(--main-color-light), var(--main-color));
+  background: linear-gradient(
+    -45deg,
+    var(--main-color-light),
+    var(--main-color)
+  );
   padding: 8px 20px;
 }
 
@@ -241,21 +301,21 @@ footer {
   .navbar .nav-link:not(.dropdown-toggle):after {
     position: absolute;
     display: block;
-    content: "";
+    content: '';
     width: 0;
     left: 50%;
     bottom: 5px;
     height: 2px;
     background: white;
-    -webkit-transition: all .2s ease;
-    transition: all .2s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
   }
-  
+
   .navbar .nav-item.active .nav-link:after,
-  .navbar .nav-link:not(.dropdown-toggle):hover:after { 
-      width: 80%; 
-      left: 10%;
-  }  
+  .navbar .nav-link:not(.dropdown-toggle):hover:after {
+    width: 80%;
+    left: 10%;
+  }
 }
 
 .navbar .navbar-nav--right {
