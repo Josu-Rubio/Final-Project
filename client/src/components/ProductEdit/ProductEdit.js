@@ -241,8 +241,8 @@ export default class ProductEdit extends Component {
                   <TextField
                     name='description'
                     label='Descripción'
-                    value={this.props.product.description}
-                    onChange={this.handleChange('description')}
+                    value={this.props.product.desc}
+                    onChange={this.handleChange('desc')}
                     multiline
                     rows={2}
                     helperText='Introduce una descripción para el anuncio'

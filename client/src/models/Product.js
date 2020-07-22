@@ -5,7 +5,7 @@ export default class Product {
     this.createdAt = ad.createdAt;
     this.updatedAt = ad.updatedAt;
     this.name = ad.name;
-    this.description = ad.description;
+    this.desc = ad.desc;
     this.price = ad.price;
     this.type = ad.type;
     this.img = ad.img.startsWith('/images/')
@@ -25,7 +25,7 @@ export default class Product {
   isValid() {
     return (
       this.name &&
-      this.description &&
+      this.desc &&
       this.price > 0 &&
       this.type &&
       this.img &&
@@ -40,7 +40,7 @@ export default class Product {
       slug: '',
       createdAt: Date.now(),
       name: '',
-      description: '',
+      desc: '',
       price: 0,
       type: PRODUCT_CONSTANTS.TYPE.BUY,
       img: '',

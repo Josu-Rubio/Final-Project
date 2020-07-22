@@ -29,6 +29,7 @@ export function getVisibleProducts(products, filters) {
 
 export function getOwnProducts(products, session, type) {
   return products.filter(
-    (product) => product.user._id === session.id && product.type === type
+    (product) => product.user._id === session.id && product.type === type,
+    console.log(type)
   );
 }

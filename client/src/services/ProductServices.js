@@ -49,7 +49,7 @@ export default {
     const baseURL = `${API_URL}/products`;
     const formData = new FormData();
     formData.append('name', product.name);
-    formData.append('description', product.description);
+    formData.append('desc', product.desc);
     formData.append('price', product.price);
     formData.append('type', product.type);
     formData.append('tags', product.tags);
@@ -69,7 +69,7 @@ export default {
     const baseURL = `${API_URL}/products/${product.slug}`;
     const formData = new FormData();
     formData.append('name', product.name);
-    formData.append('description', product.description);
+    formData.append('desc', product.desc);
     formData.append('price', product.price);
     formData.append('type', product.type);
     formData.append('tags', product.tags);

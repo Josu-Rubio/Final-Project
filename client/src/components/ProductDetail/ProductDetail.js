@@ -120,7 +120,7 @@ export default function ProductDetail(props) {
                     {props.product.type === 'buy' ? 'Compro' : 'Vendo'}
                   </h3>
                   <div className='ProductDetail__Description'>
-                    <p>{props.product.description}</p>
+                    <p>{props.product.desc}</p>
                   </div>
                   <div className='ProductDetail__Tags'>
                     {props.product.tags &&

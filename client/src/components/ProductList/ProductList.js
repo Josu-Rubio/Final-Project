@@ -22,7 +22,7 @@ export default function ProductList(props) {
           key={product._id}
           slug={product.slug}
           name={product.name}
-          description={product.description}
+          desc={product.desc}
           price={product.price}
           type={product.type}
           img={product.img}
