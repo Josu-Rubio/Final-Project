@@ -26,7 +26,7 @@ module.exports = {
           count: results.length,
           results: results,
           moment: moment,
-          userName: req.session.authUser.name,
+          userName: req.session.name,
         });
       }
     );

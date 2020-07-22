@@ -41,7 +41,7 @@ module.exports = () => {
   );
 
   router.get(
-    '/advert/:id',
+    '/product/:id',
     [
       param('id')
         .matches(/^[0-9a-fA-F]{24}$/)

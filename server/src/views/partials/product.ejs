@@ -1,0 +1,24 @@
+<div class='card'>
+    <img src='<%= product.type === 'buy' ? '/images/static/buy.png' : '/images/static/sell.png' %>' class='card-icon'
+        alt='icon'>
+    <a href='<%= product.img%>'>
+        <img src='<%= product.thumbnail %>' class='card-img-top' alt='...'>
+    </a>
+    <span class='price'><%= product.price.toFixed(2) %> €</span>
+    <div class='card-body text-justify'>
+        <h5 class='card-title text-uppercase mb-1 font-weight-bold'>
+            <%= product.name %>
+        </h5>
+        <p class='card-text text-black-50'><small><%= product.description %></small></p>
+    </div>
+    <div class='card-footer text-muted py-1 px-2'>
+        <p class='card-text mb-1'>
+            <% for(let j=0; j<product.tags.length; j++) { %>
+            <span class='badge badge-<%=product.tags[j]%>'><%=product.tags[j]%></span>
+            <% } %>
+        </p>
+        <small id='passwordHelpInline' class='text-muted'>
+            <%=__('Advert created')%> <%= moment(product.createdAt).fromNow(); %>
+        </small>
+    </div>
+</div>

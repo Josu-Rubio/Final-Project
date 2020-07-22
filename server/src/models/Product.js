@@ -11,7 +11,7 @@ const ProductSchema = new Schema(
     tags: [
       {
         type: String,
-        enum: ['work', 'lifestyle', 'motor', 'mobile', 'comic'],
+        enum: ['work', 'lifestyle', 'motor', 'electronic'],
         index: true,
       },
     ],
