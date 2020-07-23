@@ -4,7 +4,7 @@ var Jimp = require('jimp');
 
 const connectionPromise = require('../connect');
 const { Product } = require('../../models');
-const db = require('../../db');
+const db = require('../../database');
 
 const queueName = 'thumbnails';
 
