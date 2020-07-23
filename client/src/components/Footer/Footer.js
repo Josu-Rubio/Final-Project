@@ -81,7 +81,7 @@ function FooterLinks() {
         <a
           className='Footer__link'
           target='_blank'
-          href='https://github.com/Josu-Rubio'
+          href='https://github.com/Josu-Rubio/Final-Proyect'
         >
           This Website Repository
         </a>
