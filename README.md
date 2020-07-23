@@ -1,39 +1,23 @@
-# 0) BONUS TRACK - Crear nuestro primer módulo público
+# Final Proyect - wallaclone
 
-El que he creado se llama [marvel-random-hero](https://www.npmjs.com/package/marvel-random-hero), y proporciona una capa de abstracción sobre la API de Marvel, que permite obtener cada vez que es invocado un heroe aleatorio.
+This repository consist on a MERN aplication based on the modules of:
 
-- **Página del módulo en npmjs**: El modulo NPM se encuentra publicado aquí: (https://www.npmjs.com/package/marvel-random-hero)
-- **Repositorio con el código fuente**: El código fuente del repositorio aquí: (https://github.com/IsmaelB83/marvel-random-hero)
-- **Demo del módulo**: App sencilla en react, que muestra una tarjeta con los datos del hero random devuelto (https://github.com/IsmaelB83/marvel-random-hero-demo)
-- **Demo live en heroku**: [DEMO-LIVE](https://marvel-random-hero-demo.herokuapp.com/)
+- NodeJs (Advanced) of the "Fullstack Web Developer Bootcamp" imparted by "Keepcoding"
+- React (Advanced) of the "Fullstack Web Developer Bootcamp" imparted by "Keepcoding"
 
-# 1) Version 2.0 de nodepop adaptada para el módulo de backend avanzado
+The app consist on:
 
-Este repositorio es una versión avanzada del proyecto nodepop desarrollado en el módulo de backend del bootcamp de Keepcoding.
-Para mantener el repositorio original intacto (https://github.com/IsmaelB83/keepcoding-nodepop-api), he creado este nuevo repositorio.
-
-Las mejoras introducidas en esta versión son:
-
-- Creación del **modelo de usuario** y persistencia en mongodb.
-- **Envío de mails para activación de cuenta de usuario**. Mediante el uso de token con expiración temporal.
-- **Securización de la API** mediante Json Web Token.
-- **Securización del frontal** web mediante express-session y connect-mongo
-- **Carga de imagenes** de los anuncios desde el API
-- Implementación de un **microservicio sobre rabbitMQ** para generar los thumbnails de la imagen anterior
-- **Internacionalización del frontal web** mediante i18n.
-- **Uso de .env y dot-env** para almacenar configuración sensible de la aplicación.
-- **Supertest**: implementado jest y supertest para testear el api. Para arrancarlo hacer uso de **npm run test** o **npm run test:watch**
+- Backend made with NodeJs
+- Database on MongoDb Atlas
+- JWT authentication
+- Nodemailer + SendGrid for transport
+- Frontend made with React
+- Hooks running on Redux
+- Multi languages through i18n
+- Styles provided by material-ui
 
 ## CONTENTS
 
-- [DEPENDENCIAS](#DEPENDENCIAS)
-  - [Funcionalidad básica del servidor y API](#Funcionalidad-básica-del-servidor-y-API)
-  - [Gestión de ficheros .env](#Gestión-de-ficheros-.env)
-  - [Authenticación y gestión de sesiones](#Authenticación-y-gestión-de-sesiones)
-  - [Tratamiento de imagenes](#Tratamiento-de-imagenes)
-  - [Internacionalización](#Internacionalización)
-  - [Microservicio de generación de thumbnails](#Microservicio-de-generación-de-thumbnails)
-  - [Envío de mails](#Envío-de-mails)
 - [INSTALACIÓN Y EJECUCIÓN](#INSTALACIÓN-Y-EJECUCIÓN)
   - [Descarga](#Descarga)
   - [Instalación de modulos](#Instalación-de-modulos)
@@ -61,63 +45,14 @@ Las mejoras introducidas en esta versión son:
   - [Home](#Home)
   - [Detail](#Detail)
 
-## DEPENDENCIAS
+## INSTALATION
 
-Esta aplicación hace uso de los siguientes módulos de npm:
+### Download
 
-### Funcionalidad básica del servidor y API
-
-- "express": "^4.17.1"
-- "express-validator": "^6.1.1"
-- "body-parser": "^1.19.0"
-- "cookie-parser": "^1.4.4"
-- "cors": "^2.8.5"
-- "ejs": "^2.6.2"
-- "moment": "^2.24.0"
-- "mongoose": "^5.7.5"
-- "morgan": "^1.9.1"
-
-### Gestión de ficheros .env
-
-- "dotenv": "^8.2.0"
-
-### Authenticación y gestión de sesiones
-
-- "jsonwebtoken": "^8.5.1"
-- "express-session": "^1.17.0"
-- "connect-mongo": "^3.1.2"
-- "bcrypt-nodejs": "0.0.3"
-
-### Microservicio de generación de thumbnails
-
-- "amqplib": "^0.5.5"
-- "multer": "^1.4.2"
-- "jimp": "^0.8.5"
-
-### Internacionalización
-
-- "i18n": "^0.8.4"
-
-### Envío de mails
-
-- "nodemailer": "^6.3.1"
-- "juice": "^5.2.0"
-- "html-to-text": "^5.1.1"
-- "ejs-promise": "^0.3.3"
-
-### Tests
-
-- "jest": "^24.9.0"
-- "supertest": "^4.0.2"
-
-## INSTALACIÓN Y EJECUCIÓN
-
-### Descarga
-
-Para descargar este repositorio:
+To download this repository:
 
 ```
-\downloads\git clone https://github.com/IsmaelB83/keepcoding-nodepop-advanced.git
+git clone https://github.com/Josu-Rubio/Final-Proyect
 ```
 
 ### Instalación de modulos
