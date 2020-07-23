@@ -1,4 +1,4 @@
-# Final Proyect - wallaclone
+# Final Project - wallaclone
 
 This repository consist on a MERN aplication based on the modules of:
 
@@ -16,6 +16,12 @@ The app consist on:
 - Multi languages through i18n
 - Styles provided by material-ui
 
+## Architecture
+
+```
+https://drive.google.com/file/d/1dGFcg-TuFyJE2HlZNw22XkjC1wJ9x7Pv/view
+```
+
 ## INSTALATION
 
 ### Download
@@ -23,7 +29,7 @@ The app consist on:
 To download this repository:
 
 ```
-git clone https://github.com/Josu-Rubio/Final-Proyect.git
+git clone https://github.com/Josu-Rubio/Final-Project.git
 ```
 
 ### NPM i (Module installation)
