@@ -8,6 +8,7 @@ import imgBuy from '../../assets/images/buy.png';
 import imgSell from '../../assets/images/sell.png';
 import imgReserved from '../../assets/images/reserved.png';
 import imgSold from '../../assets/images/sold.png';
+import Translate from 'react-translate-component';
 import './styles.css';
 
 export default function ProductCard(props) {
@@ -48,7 +49,9 @@ export default function ProductCard(props) {
           {props.price}
           <span className='ProductCard__Currency'>€</span>
         </p>
-        <p>Autor: {props.user}</p>
+        <p>
+          <Translate content='createdby' component='a' /> {props.user}
+        </p>
       </div>
       <div className='ProductCard__Footer'>
         <div className='Ad__Tags'>

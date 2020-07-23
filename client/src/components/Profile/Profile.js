@@ -12,7 +12,7 @@ import NavBar from '../NavBar';
 import Footer from '../Footer';
 import Session from '../../models/Session';
 import LocalStorage from '../../utils/Storage';
-import imageImg from '../../assets/images/user.png';
+import imageImg from '../../assets/images/user.jpg';
 import './styles.css';
 
 export default class Profile extends Component {

@@ -9,7 +9,7 @@ import withForm from '../Forms/Form/withForm';
 import LoadingSmall from '../LoadingSmall';
 import LocalStorage from '../../utils/Storage';
 import AuthServices from '../../services/AuthServices';
-import imageLogo from '../../assets/images/logo2.png';
+import imageLogo from '../../assets/images/logo.png';
 import './styles.css';
 
 class Login extends Component {

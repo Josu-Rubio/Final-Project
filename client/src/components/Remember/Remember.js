@@ -7,7 +7,7 @@ import Form from '../Forms/Form';
 import withForm from '../Forms/Form/withForm';
 import LoadingSmall from '../LoadingSmall';
 import AuthServices from '../../services/AuthServices';
-import imageLogo from '../../assets/images/logo2.png';
+import imageLogo from '../../assets/images/logo.png';
 import './styles.css';
 
 class Remember extends Component {

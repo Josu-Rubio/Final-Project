@@ -8,7 +8,7 @@ import InputForm from '../Forms/InputForm';
 import Form from '../Forms/Form';
 import withForm from '../Forms/Form/withForm';
 import UserServices from '../../services/UserServices';
-import imageLogo from '../../assets/images/logo2.png';
+import imageLogo from '../../assets/images/logo.png';
 import './styles.css';
 
 class Register extends Component {

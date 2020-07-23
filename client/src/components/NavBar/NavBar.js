@@ -14,8 +14,8 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ViewListIcon from '@material-ui/icons/ViewList';
-import imageLogo from '../../assets/images/logo2.png';
-import imageAvatar from '../../assets/images/user.png';
+import imageLogo from '../../assets/images/logo.png';
+import imageAvatar from '../../assets/images/user.jpg';
 import './styles.css';
 
 export default function NavBar(props) {
@@ -28,7 +28,7 @@ export default function NavBar(props) {
           <Link to='/' className='NavBar__Brand'>
             <img src={imageLogo} alt='logo' className='NavBar__Brand' />
           </Link>
-
+          <h1>Wallaclone App</h1>
           {props.session.email && (
             <div>
               <IconButton
