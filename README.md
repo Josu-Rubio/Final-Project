@@ -16,35 +16,6 @@ The app consist on:
 - Multi languages through i18n
 - Styles provided by material-ui
 
-## CONTENTS
-
-- [INSTALACIÓN Y EJECUCIÓN](#INSTALACIÓN-Y-EJECUCIÓN)
-  - [Descarga](#Descarga)
-  - [Instalación de modulos](#Instalación-de-modulos)
-  - [Inicialización de base de datos](#Inicialización-de-base-de-datos)
-  - [Configuración](#Configuración)
-  - [Lanzar-tests-unitarios](Lanzar-tests-unitarios)
-  - [Ejecución](#Ejecución)
-- [REST API](#REST-API)
-  - [Autenticación](#Autenticación)
-  - [User](#User)
-    - [User-schema](#User-schema)
-    - [Crear un usuario](#Crear-un-usuario)
-  - [Anuncios](#Anuncios)
-    - [Anuncios Schema](#Anuncios-schema)
-    - [Obtener todos los anuncios](#Obtener-todos-los-anuncios)
-    - [Obtener un único anuncio](#Obtener-un-único-anuncio)
-    - [Filtrado de anuncios](#Filtrado-de-anuncios)
-    - [Listado de tags](#Listado-de-tags)
-    - [Crear un anuncio](#Crear-un-anuncio)
-    - [Actualizar un anuncio](#Actualizar-un-anuncio)
-- [WEB](#web)
-
-  - [Create user](#Create-user)
-  - [Login](#Login)
-  - [Home](#Home)
-  - [Detail](#Detail)
-
 ## INSTALATION
 
 ### Download
@@ -52,155 +23,130 @@ The app consist on:
 To download this repository:
 
 ```
-git clone https://github.com/Josu-Rubio/Final-Proyect
+git clone https://github.com/Josu-Rubio/Final-Proyect.git
 ```
 
-### Instalación de modulos
+### NPM i (Module installation)
 
-Utiliza npm install para instalar todas las dependencias de la aplicación
-
-```
-\downloads\keepcoding-nodepop-advanced\npm install
-```
-
-### Inicialización de base de datos
-
-Inicializa la base de datos mongo. Esto borrará la colección "product" de la base de datos mongo (nodepop), y creará los anuncios contenidos en
-\downloads\keepcoding-nodepop-advanced\src\database\data.json
+On the server folder:
 
 ```
-\downloads\keepcoding-nodepop-advanced\npm run init
+npm install
 ```
 
-### Configuración
-
-Antes de arrancar debes generar un fichero .env, con la misma estructura que el .env.example que se adjunta a modo de ejemplo en el repositorio. En este fichero se deben indicar los siguientes parámetros mínimos:
-
-Cadena de conexión a la base de datos mongodb:
-
-- MONGODB_URL=MONGODB_URL=mongodb://localhost:27017/nodepop
-
-Cadena de conexión a la cola rabbitmq, haciendo uso del protocolo amqp:
-
-- RABBITMQ_URL=amqp://user:pass@hostname/instance
-
-Secret utilizado para generación del JWT y la configuración de sessión del frontal web:
-
-- SECRET=Asoqwdn1213nioasQW1wdmZsal
-
-Rutas a los ficheros key y cert para poder arrancar el modo https:
-
-- HTTPS_KEY=./certs/example.com+5-key.pem
-- HTTPS_CERT=./certs/example.com+5.pem
-
-Puerto en el que arrancar el servidor. Por defecto será el HTTPS.
-
-- PORT=8443
-
-Configuración de sendgrid para poder hacer uso del envio de mails (es necesario para activar nuevas cuentas de usuario). En el .env.example también hay parámetros de mailtrap. Pero no son necesarios en la configuración actual de la aplicación (que ya trabaja sobre sendgrid):
-
-- SENDGRID_USER=user
-- SENDGRID_PASS=pass
-
-### Lanzar tests unitarios
-
-Para lanzar los tests unitarios lanzar el siguiente script
+On the client folder:
 
 ```
-\downloads\keepcoding-nodepop-advanced\npm run test         (o bien)
-\downloads\keepcoding-nodepop-advanced\npm run test:watch
+npm install
 ```
 
-### Ejecución
+### DB initializing
 
-Una vez configurado el fichero .env, arrancaremos la aplicación mediante:
+Init the database in Mongo. There's a file `install_db.js` with an User and some products to start testing de web.
 
-```
-\downloads\keepcoding-nodepop-advanced\npm start
-```
-
-Al mismo tiempo es necesario que arranquemos el microservicio encargado de generar los thumbnails. Para ello en una terminal adicional arrancaremos un worker de la siguiente forma:
+On the server folder:
 
 ```
-\downloads\keepcoding-nodepop-advanced\npm run worker
+npm run init
+```
+
+### Config
+
+Before starting the App, theres a `.env.example` file on the server folder. Change the name to `.env` and follow the instructions inside. This way you will set your App ready to start.
+
+### Starting de App
+
+Unce generated the .env file, start the app:
+
+```
+nodemon start
+```
+
+Run as well the worker to generate the thumbnail:
+
+```
+npm run worker
+```
+
+Finally, we run the frontend from the client folder:
+
+```
+npm start
 ```
 
 ## REST API
 
-### Autenticación
+### Authentication
 
-Las rutas de anuncios de la API están securizadas mediante JWT. Para conseguir el token que da acceso al resto de rutas de la API es necesario autenticar mediante el siguiente endpoint (tipo POST). En el body hay que pasar el email y el password:
+The API product routes are secured by JWT. It is necessary to make a call to get the token back to the next endpoint:
 
 ```
-https://localhost:8443/apiv1/authenticate
+https://localhost:8000/apiv1/authenticate
 ```
 
-El resultado de la llamada proporcionará el JWT a utilizar en el resto de llamadas. Los tokens tienen una vida de expiración de 60 minutos:
+That call will retrieve a JWT authentication which will last for 60 minutes.
+The result should be something like:
 
 ```js
 {
     "success": true,
     "description": "Authorization successful",
     "user": {
-        "name": "Ismael",
+        "name": "User Example",
         "email": "user@example.com",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Im5hbWUiOiJJc21hZWwiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJleHBpcmVzIjoiMjAxOS0xMS0xNlQxNTowMzozNi41MDNaIn0sImlhdCI6MTU3MzkxMzAxNn0.kvYabTTHmJ_s1RoTd2-rp7km9eDEKE_Q4z1hYx4Mo-8"
+        "token": "9a0e8nqdwisa938º2b1eicddianc8e123enicqwwac9edn29weu0q293e12'"
     }
 }
 ```
 
 ### User
 
-Este recurso proporciona el modelo de usuario que utiliza la aplicación para autenticación
+The user model for the authentication consist:
 
 #### User-schema
 
-| Key      | Type   | Description                                               |
-| -------- | ------ | --------------------------------------------------------- |
-| \_id     | string | Id del usuario                                            |
-| name     | string | Nombre del usuario (30char)                               |
-| email    | string | Email del usuario (150char)                               |
-| password | string | Password del usuario (min length 4char)                   |
-| jwt      | string | JWT generado cuando un usuario autentica en la aplicación |
-| expire   | Date   | Fecha de expiración del JWT                               |
+- \_id (string) --> user id
+- name (string) --> user name
+- email (string) --> user email
+- password (string) --> user password
+- jwt (string) --> JWT for authentication
+- expire (Date) --> JWT expiration date
 
-#### Crear un usuario
+#### Creating an user
 
-Para crear un usuario debes llamar a la url base de users con el metodo POST. Pasando en el body del request todos los parametros para definir el nuevo usuario: name, email, password
+To create an user a `POST` call should be made throug the URL base. All the params should be sent to define the new user(name, email, password)
 
-```
-https://localhost:8443/apiv1/user  (POST)
-```
-
-Esto generará la cuenta de usuario en estado inactivo. Para poder empezar a utilizar la cuenta de usuario se debe validar mediante correo electrónico. Nodepop enviará un correo electrónico a la dirección de mail proporcionada, este correo incorporará un enlace para la activación de la cuenta tipo al siguiente:
+This proccess is made automatically through the frontend App.
 
 ```
-https://localhost:8443/apiv1/user/activate/01fdc7f33985b0493cb850b96f742332983bf57c  (GET)
+https://localhost:8000/apiv1/user
 ```
 
-### Anuncios
+This should generate an "Inactive" user. To activate such user, it should be necessary to validate through the `link` sent to the new user email.
+
+**During the moment, we are working on the transport system. So far, all the users are created with the status "Active".**
+
+### Products
 
 Este recurso proporciona el modelo de anunción que utiliza la aplicación como modelo básico para su funcionalidad tipo "tienda"
 
-#### Anuncios-schema
+#### Products-Schema
 
-| Key         | Type   | Description                                |
-| ----------- | ------ | ------------------------------------------ |
-| \_id        | string | Id del anuncio                             |
-| name        | string | Nombre del anuncio (30char)                |
-| description | string | Descripción larga del anuncio (100char)    |
-| price       | number | Precio de compra/venta                     |
-| type        | string | Tipo del anuncio. Puede ser 'buy' o 'sell' |
-| img         | string | Url a la imagen principal del anuncio      |
-| thumbnail   | string | Url a la imagen tipo thumbnail del anuncio |
-| tags        | array  | Array de tags asociados al anuncio         |
+\_id (string) --> product id
+name (string) --> product name
+desc (string) --> product description
+price | (number) --> product price
+type (string) --> product type (sell/buy)
+img (string) --> product url img
+thumbnail (string) --> product url img thumbnail|
+tags (array) --> product tags
 
-#### Obtener todos los anuncios
+#### Get products
 
-Pueds obtener todos los anuncios de la base de datos mediante el endpoint `/products`.
+to obtain all the products, it is necessary to go through th endpoint:
 
 ```
-https://localhost:8443/apiv1/products
+https://localhost:8000/apiv1/products
 ```
 
 ```js
@@ -212,225 +158,34 @@ https://localhost:8443/apiv1/products
         "lifestyle"
       ],
       "_id": "5d3a0a5f9bd7ed2ece463ab4",
-      "name": "PS4Pro",
-      "description": "Compro PS4 Pro con menos de 1 año de uso",
-      "price": 200.99,
-      "type": "buy",
-      "img": "/images/products/original/ps4pro.jpg",
-      "thumbnail": "/images/products/thumbnail/ps4pro.jpg",
+      "name": 'Green Card',
+      "desc": 'I offer a green-card',
+      "price": 999.99,
+      "type": 'sell',
+      "img": 'images/products/original/2020-7-22194622__6627603.jpg',
+      "tags": ['lifestyle'],
+      "thumbnail": "/images/products/thumbnail/2020-7-22194622__6627603.jpg",
       "__v": 0,
-      "createdAt": "2019-07-25T20:00:31.944Z",
-      "updatedAt": "2019-07-25T20:00:31.945Z"
+      "createdAt":"2020-07-22T20:44:36.764+00:00",
+      "updatedAt":"2020-07-22T20:44:36.764+00:00"
     },
-    // ...
+
   ]
 }
 ```
 
-#### Obtener un único anuncio
+#### Create a product
 
-Puede obtener un único anuncio añadiendo el `id` a continuación del endpoint: `/products5d3a0a5f9bd7ed2ece463ab4`
-
-```
-https://localhost:8443/apiv1/products/5d3a0a5f9bd7ed2ece463ab4
-```
-
-```js
-{
-  "success": false,
-  "result": {
-    "tags": [
-      "lifestyle"
-    ],
-    "_id": "5d3a0a5f9bd7ed2ece463ab4",
-    "name": "PS4Pro",
-    "description": "Compro PS4 Pro con menos de 1 año de uso",
-    "price": 200.99,
-    "type": "buy",
-    "img": "/images/products/original/ps4pro.jpg",
-    "thumbnail": "/images/products/thumbnail/ps4pro.jpg",
-    "__v": 0,
-    "createdAt": "2019-07-25T20:00:31.944Z",
-    "updatedAt": "2019-07-25T20:00:31.945Z"
-  }
-}
-```
-
-#### Filtrado de anuncios
-
-Puedes incluir filtros en la URL añadiendo parametros especiales a la consulta. Para comenzar con el filtrado incorpora el carácter `?` seguido de las queries a incorporar
-en el siguiente formato `<query>=<value>`. Si necesitas encadenar varias consultas puedes utilizar el carácter `&`.
-
-Ejemplos de consultas:
-
-- Todos los anuncios que contienen el `tag` lifestyle: https://localhost:8443/apiv1/products?tag=lifestyle:
-- Todos los anuncios con `price` entre 1 y 100: https://localhost:8443/apiv1/products?price=1-100
-- Las dos consultas anteriores combinadas: https://localhost:8443/apiv1/products?tag=lifestyle&price=1-100
-- Precio entre 1 y 100 de anuncios que empiecen por 'Com': https://localhost:8443/apiv1/products?price=1-100&name=Com
-- Sólo los anuncios de venta: https://localhost:8443/apiv1/products?venta=true
-- Sólo los anuncios de compra: https://localhost:8443/apiv1/products?venta=false
-
-Los parámetros disponibles para filtrado son:
-
-- `name`: filtrado por los que empiecen con el string indicado (la API NO es case sensitive).
-- `price`: filtrar por precio. Entre un rango x-y, menores a un precio x-, o mayores a un precio -y.
-- `tag`: permite filtrar los anuncios que tengan el tag indicado. Dentro de los posibles (`work`, `lifestyle`, `motor`, `mobile`).
-- `venta`: permite filtrar por anuncios de venta (=true), o anuncios de compra (=false)
-- `skip`: permite saltar resultados (utilizado para paginar junto con limit)
-- `limit`: permite limitar el número de resultados devueltos
-- `fields`: campos a mostrar del anuncio
-
-_Ejemplo de consulta_
+To create a product it is necessary to make a `POST` call to the endpoint:
 
 ```
-https://localhost:8443/apiv1/products?price=1-100&venta=false
+https://localhost:8000/apiv1/products
 ```
 
-```js
-{
-  "success": true,
-  "results": [
-    {
-      "tags": [
-        "lifestyle"
-      ],
-      "_id": "5d3a0a5f9bd7ed2ece463abc",
-      "name": "Comba de Crossfit",
-      "price": 8,
-      "description": "Soy el de las calleras.",
-      "type": "buy",
-      "img": "/images/products/comba.jpg",
-      "__v": 0,
-      "createdAt": "2019-07-25T20:00:31.945Z",
-      "updatedAt": "2019-07-25T20:00:31.945Z"
-    },
-    {
-      "tags": [
-        "lifestyle",
-        "work",
-        "mobile"
-      ],
-      "_id": "5d3a0a5f9bd7ed2ece463ab7",
-      "name": "Teclado Gaming Razer Chroma",
-      "price": 70,
-      "description": "Busco teclado razer en buen estado.",
-      "type": "buy",
-      "img": "/images/products/tecladorazer.jpg",
-      "__v": 0,
-      "createdAt": "2019-07-25T20:00:31.945Z",
-      "updatedAt": "2019-07-25T20:00:31.945Z"
-    },
-    {
-      "tags": [
-        "lifestyle"
-      ],
-      "_id": "5d3a0a5f9bd7ed2ece463abb",
-      "name": "Calleras Crossfit",
-      "price": 15,
-      "description": "Dejate de romperte las manos en los WODs",
-      "type": "buy",
-      "img": "/images/products/calleras.jpg",
-      "__v": 0,
-      "createdAt": "2019-07-25T20:00:31.945Z",
-      "updatedAt": "2019-07-25T20:00:31.945Z"
-    }
-  ]
-}
-```
+#### Update a product
 
-#### Listado de tags
-
-Puedes obtener un listado de los tags existentes en la base de datos mediante el recurso /tag de la API: http://127.0.0.1:3001/apiv1/tags
-
-_Ejemplo de consulta_
+To create a product it is necessary to make a `PUT` call to the endpoint named before PLUS adding the id of the product:
 
 ```
-http://127.0.0.1:3001/apiv1/tags
+https://localhost:8000/apiv1/products/5d3a0a5f9bd7ed2ece463abb
 ```
-
-```js
-{
-  "success": true,
-  "count": 4,
-  "results": [
-    "lifestyle",
-    "mobile",
-    "motor",
-    "work"
-  ]
-}
-```
-
-#### Crear un anuncio
-
-Para crear un anuncio debes llamar a la url base de anuncios con el metodo POST. Pasando en el body del request todos los parametros para definir el nuevo anuncio
-
-```
-https://localhost:8443/apiv1/products  (POST)
-```
-
-En un primer momento tanto "img" como "thumbnail apuntarán a la misma url con la imagen generada. Esta url será la ubicada en la ruta /public/images/products/original. Adicionalmente, el controlador de la API generará un mensaje contra la cola rabbitmq, para que un worker se encargue de generar el resize de la imagen (el thumbnail), y adicionalmente actualizar el modelo (product), apuntando el campo "thumbnail" a la nueva imagen generada. Que en este caso estará en la ruta /public/images/products/thumbnail.
-
-De esta forma, mediante el uso de rabbitmq y un microservicio para la gestión de la generación del thumbnail, conseguimos desacoplar totalmente la generación de los thumbnails de la propia funcionalidad de la API.
-
-#### Actualizar un anuncio
-
-Para actualizar un anuncio se debe llamar a la URL base de un anuncio único `anuncio/id` utilizando el metodo PUT. Además en el body del request se indicarán los nuevos valores
-de los parametros que se deseen modificar.
-
-```
-https://localhost:8443/apiv1/products/5d3a0a5f9bd7ed2ece463abb  (PUT)
-```
-
-## WEB
-
-Adicionalmente a la API se proporciona una web con la posibilidad de ver todos los anuncios disponibles en nodepop (tanto a nivel de lista como de detalle).
-
-### Create user
-
-Para crear un usuario desde la web, debemos acceder a la ruta siguiente. También se puede acceder desde el propio login (vista por defecto que renderiza la app), y haciendo click en el enlace de la parte inferior del formulario que dice: "go to create account":
-
-```
-https://localhost:8443/user/create
-```
-
-![alt text](https://raw.githubusercontent.com/IsmaelB83/keepcoding-nodepop-advanced/master/public/images/readme/create.jpg)
-
-Una vez rellenados los datos del formulario, y pulsado en "create account", la aplicación nos enviará un mail que debemos confirmar para que la cuenta se encuentre activa. Hasta ese momento la cuenta permanecerá inactiva, y por tanto no podrá ser utilizada para hacer login. El mail que se recibe contiene una ruta similar a la siguiente, con un token de activación que se asigna a la cuenta del usuario al momento de crear la cuenta:
-
-```
-https://localhost:8443/user/activate/d44d7e3eb7006eb3fbf6ddc39456c5ba4794edfa         (version web)
-https://localhost:8443/apiv1/user/activate/d44d7e3eb7006eb3fbf6ddc39456c5ba4794edfa   (version api)
-```
-
-![alt text](https://raw.githubusercontent.com/IsmaelB83/keepcoding-nodepop-advanced/master/public/images/readme/mail.jpg)
-
-### Login
-
-Para acceder a la aplicación debemos indicar nuestro email y contraseña. Si las credenciales son válidas, se accederá automáticamente la zona privada, donde podremos ver los anuncios de nodepop:
-
-```
-https://localhost:8443/user/login
-```
-
-![alt text](https://raw.githubusercontent.com/IsmaelB83/keepcoding-nodepop-advanced/master/public/images/readme/login.jpg)
-
-### Home
-
-En esta vista se muestran todos los anuncios disponibles en nodepop. Se accede a ella directamente una vez hemos hecho login en la aplicación:
-
-```
-https://localhost:8443/
-```
-
-![alt text](https://raw.githubusercontent.com/IsmaelB83/keepcoding-nodepop-advanced/master/public/images/readme/home.jpg)
-
-### Detail
-
-En esta vista se muestra la tarjeta de detalle de un anuncio. Se accede a ella desde el home, cuando pulsamos en el "detalle" de un anuncio concreto:
-
-```
-https://localhost:8443/5d3a0a5f9bd7ed2ece463abc
-```
-
-![alt text](https://raw.githubusercontent.com/IsmaelB83/keepcoding-nodepop-advanced/master/public/images/readme/detail.jpg)
