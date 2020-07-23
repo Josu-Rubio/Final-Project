@@ -41,24 +41,28 @@ function FooterAddress() {
         <div className='SocialLinks'>
           <a
             className='SocialLinks__link SocialLinks__link--github'
+            target='_blank'
             href='https://github.com/Josu-Rubio'
           >
             <GitHubIcon />
           </a>
           <a
             className='SocialLinks__link SocialLinks__link--linkedin'
+            target='_blank'
             href='https://www.linkedin.com/in/josue-rubio/'
           >
             <LinkedInIcon />
           </a>
           <a
             className='SocialLinks__link SocialLinks__link--instagram'
+            target='_blank'
             href='https://www.instagram.com/josurbio/'
           >
             <InstagramIcon />
           </a>
           <a
             className='SocialLinks__link SocialLinks__link--twitter'
+            target='_blank'
             href='https://twitter.com/JosuRubio'
           >
             <TwitterIcon />
@@ -74,7 +78,11 @@ function FooterLinks() {
     <div className='Footer__section'>
       <h2 className='Footer__title'>Links</h2>
       <div className='Footer__content Footer__content--center'>
-        <a className='Footer__link' href='https://github.com/Josu-Rubio'>
+        <a
+          className='Footer__link'
+          target='_blank'
+          href='https://github.com/Josu-Rubio'
+        >
           This Website Repository
         </a>
       </div>

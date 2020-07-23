@@ -28,6 +28,7 @@ export default function NavBar(props) {
           <Link to='/' className='NavBar__Brand'>
             <img src={imageLogo} alt='logo' className='NavBar__Brand' />
           </Link>
+
           <h1>Wallaclone App</h1>
           {props.session.email && (
             <div>

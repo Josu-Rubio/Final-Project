@@ -49,9 +49,7 @@ export default function ProductCard(props) {
           {props.price}
           <span className='ProductCard__Currency'>€</span>
         </p>
-        <p>
-          <Translate content='createdby' component='a' /> {props.user}
-        </p>
+        <p>Created by: {props.user}</p>
       </div>
       <div className='ProductCard__Footer'>
         <div className='Ad__Tags'>
